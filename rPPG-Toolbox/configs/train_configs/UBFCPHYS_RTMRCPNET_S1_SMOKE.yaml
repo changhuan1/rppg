@@ -1,0 +1,120 @@
+BASE: ['']
+TOOLBOX_MODE: "train_and_test"
+
+TRAIN:
+  BATCH_SIZE: 8
+  EPOCHS: 1
+  LR: 1e-3
+  MODEL_FILE_NAME: UBFCPHYS_S1_SMOKE_RTMRCPNet
+  PLOT_LOSSES_AND_LR: False
+  DATA:
+    FS: 30
+    DATASET: UBFC-PHYS-STRESS-RGB
+    DO_PREPROCESS: True
+    DATA_FORMAT: KTC
+    DATA_PATH: "RawData"
+    CACHED_PATH: "PreprocessedData"
+    EXP_DATA_NAME: "UBFCPHYS_S1_SMOKE_ROI5_Chunk160"
+    BEGIN: 0.0
+    END: 1.0
+    PREPROCESS:
+      DATA_TYPE: ['Raw']
+      LABEL_TYPE: Stress
+      DO_CHUNK: True
+      CHUNK_LENGTH: 160
+      CROP_FACE:
+        DO_CROP_FACE: True
+        BACKEND: HC
+        USE_LARGE_FACE_BOX: True
+        LARGE_BOX_COEF: 1.3
+        DETECTION:
+          DO_DYNAMIC_DETECTION: False
+          DYNAMIC_DETECTION_FREQUENCY: 30
+          USE_MEDIAN_FACE_BOX: False
+      RESIZE:
+        W: 128
+        H: 128
+
+VALID:
+  DATA:
+    FS: 30
+    DATASET: UBFC-PHYS-STRESS-RGB
+    DO_PREPROCESS: False
+    DATA_FORMAT: KTC
+    DATA_PATH: "RawData"
+    CACHED_PATH: "PreprocessedData"
+    EXP_DATA_NAME: "UBFCPHYS_S1_SMOKE_ROI5_Chunk160"
+    BEGIN: 0.0
+    END: 1.0
+    PREPROCESS:
+      DATA_TYPE: ['Raw']
+      LABEL_TYPE: Stress
+      DO_CHUNK: True
+      CHUNK_LENGTH: 160
+      CROP_FACE:
+        DO_CROP_FACE: True
+        BACKEND: HC
+        USE_LARGE_FACE_BOX: True
+        LARGE_BOX_COEF: 1.3
+        DETECTION:
+          DO_DYNAMIC_DETECTION: False
+          DYNAMIC_DETECTION_FREQUENCY: 30
+          USE_MEDIAN_FACE_BOX: False
+      RESIZE:
+        W: 128
+        H: 128
+
+TEST:
+  METRICS: ['ACC', 'Precision', 'Recall', 'F1', 'AUC']
+  USE_LAST_EPOCH: False
+  DATA:
+    FS: 30
+    DATASET: UBFC-PHYS-STRESS-RGB
+    DO_PREPROCESS: False
+    DATA_FORMAT: KTC
+    DATA_PATH: "RawData"
+    CACHED_PATH: "PreprocessedData"
+    EXP_DATA_NAME: "UBFCPHYS_S1_SMOKE_ROI5_Chunk160"
+    BEGIN: 0.0
+    END: 1.0
+    PREPROCESS:
+      DATA_TYPE: ['Raw']
+      LABEL_TYPE: Stress
+      DO_CHUNK: True
+      CHUNK_LENGTH: 160
+      CROP_FACE:
+        DO_CROP_FACE: True
+        BACKEND: HC
+        USE_LARGE_FACE_BOX: True
+        LARGE_BOX_COEF: 1.3
+        DETECTION:
+          DO_DYNAMIC_DETECTION: False
+          DYNAMIC_DETECTION_FREQUENCY: 30
+          USE_MEDIAN_FACE_BOX: False
+      RESIZE:
+        W: 128
+        H: 128
+
+DEVICE: cuda:0
+NUM_OF_GPU_TRAIN: 1
+
+LOG:
+  PATH: runs/exp
+
+MODEL:
+  NAME: RTMRCPNet
+  RTMRCPNET:
+    NUM_ROIS: 5
+    INPUT_CHANNELS: 3
+    HIDDEN_DIM: 128
+    NUM_CLASSES: 2
+    DROPOUT: 0.5
+    USE_TEMPORAL_ATTENTION: True
+    USE_REGION_ATTENTION: True
+    USE_REGION_RESIDUAL: True
+    DATA_VARIANT: multi_roi
+    ARCHITECTURE: rtmrcpnet
+
+INFERENCE:
+  BATCH_SIZE: 8
+  MODEL_PATH: ""

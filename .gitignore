@@ -1,0 +1,14 @@
+*.zip
+s1/
+
+# Runtime data and generated experiment artifacts
+PreprocessedData/
+RawData/
+rPPG-Toolbox/PreprocessedData/
+rPPG-Toolbox/RawData/
+rPPG-Toolbox/runs/
+rPPG-Toolbox/paper_outputs/
+
+# Python/cache noise
+__pycache__/
+*.pyc

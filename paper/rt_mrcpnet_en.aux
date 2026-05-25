@@ -1,0 +1,88 @@
+\relax 
+\citation{mcduff2014remote,benezeth2018remotehrv,nikolaiev2020noncontact}
+\citation{sabour2021ubfcphys,chaptoukaev2023stressid,heimerl2024fordigitstress}
+\@writefile{toc}{\contentsline {title}{Region-Temporal Attention Multi-Region Color Pulse Network for Contactless Stress Recognition}{1}{}\protected@file@percent }
+\@writefile{toc}{\authcount {1}}
+\@writefile{toc}{\contentsline {author}{Anonymous Authors}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{sabour2021ubfcphys}
+\citation{chaptoukaev2023stressid}
+\citation{heimerl2024fordigitstress}
+\citation{mcduff2014remote}
+\citation{nikolaiev2020noncontact}
+\citation{benezeth2018remotehrv}
+\citation{xu2024mtasr}
+\citation{braun2024sympcam}
+\citation{braun2023sympathetic}
+\citation{dehaan2013chrom,wang2017pos,pilz2018lgi}
+\citation{chen2018deepphys,yu2019physnet,liu2020mttscan,liu2023efficientphys}
+\citation{yu2022physformer,zou2025rhythmformer,zhao2024mar,luo2024physmamba,huo2025multiphys,li2026dualmamba}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Stress Recognition and Multimodal Stress Datasets}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Contactless Stress Recognition from Facial Videos}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Remote Physiological Measurement}{3}{}\protected@file@percent }
+\citation{zhao2020multiscale}
+\citation{bondarenko2025regions}
+\citation{xiong2023graphphys}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Regional Modeling and Attention Mechanisms}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Positioning of This Work}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Definition}{4}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Architecture of Region-Temporal Attention Multi-Region Color Pulse Network (RT-MRCPNet). A facial video clip is converted into multi-region red-green-blue temporal sequences, encoded by a shared temporal encoder, aggregated with temporal attention and region attention, and finally classified into stress or non-stress. Here $K$, $T$, $C$, and $D$ denote the number of regions of interest (ROIs), clip length, color channels, and hidden feature dimension, respectively.}}{5}{}\protected@file@percent }
+\newlabel{fig:overview}{{1}{5}{}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Multi-Region Color Pulse Representation}{5}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Facial regions used for multi-region color pulse extraction.}}{5}{}\protected@file@percent }
+\newlabel{tab:regions}{{1}{5}{}{table.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Five facial regions used by the proposed multi-region color pulse representation. The normalized face is partitioned into forehead, left cheek, right cheek, nose, and chin ROIs, and each region is converted into an RGB temporal sequence.}}{6}{}\protected@file@percent }
+\newlabel{fig:region_partition}{{2}{6}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Region-Wise Temporal Encoder}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Temporal Attention}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Region Attention}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Training Objective}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset and Label Definition}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Subject-Independent Protocol}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Preprocessing and Implementation Details}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Metrics}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Comparison Methods}{9}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Controlled comparison under the same UBFC-Phys subject-independent protocol. Abbreviations: ACC, accuracy; AUC, area under the receiver operating characteristic curve; RGB, red-green-blue; ROI, region of interest; rPPG, remote photoplethysmography; HR, heart rate; HRV, heart rate variability; CNN, convolutional neural network; LSTM, long short-term memory; 3D, three-dimensional; RT-MRCPNet, Region-Temporal Attention Multi-Region Color Pulse Network. All models use facial RGB video only, the same clip length, the same train/validation/test split, and the same evaluation code. All metrics are reported in percentage (\%).}}{10}{}\protected@file@percent }
+\newlabel{tab:main_results}{{2}{10}{}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Quantitative visualization of the subject-independent evaluation. The receiver operating characteristic curves compare the proposed method with representative baselines, and the confusion matrix summarizes the error distribution of RT-MRCPNet. This view complements Table~\ref {tab:main_results} by making the ranking and error pattern easier to inspect.}}{11}{}\protected@file@percent }
+\newlabel{fig:quantitative_visualization}{{3}{11}{}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Ablation Study}{11}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Ablation study of the proposed method. ACC denotes accuracy, AUC denotes area under the receiver operating characteristic curve, and RT-MRCPNet denotes Region-Temporal Attention Multi-Region Color Pulse Network. All metrics are reported in percentage (\%).}}{11}{}\protected@file@percent }
+\newlabel{tab:ablation}{{3}{11}{}{table.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Attention-based qualitative visualization. Region attention over the five facial ROIs and temporal attention curves for representative stress and non-stress clips indicate whether the model emphasizes physiologically plausible regions and suppresses unstable temporal segments.}}{12}{}\protected@file@percent }
+\newlabel{fig:attention_visualization}{{4}{12}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Complexity Analysis}{12}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Model complexity comparison. RGB denotes red-green-blue, 3D denotes three-dimensional, CNN denotes convolutional neural network, FLOPs denotes floating-point operations, and RT-MRCPNet denotes Region-Temporal Attention Multi-Region Color Pulse Network.}}{12}{}\protected@file@percent }
+\newlabel{tab:complexity}{{4}{12}{}{table.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{12}{}\protected@file@percent }
+\bibstyle{splncs04}
+\bibdata{references}
+\bibcite{benezeth2018remotehrv}{1}
+\bibcite{bondarenko2025regions}{2}
+\bibcite{braun2023sympathetic}{3}
+\bibcite{braun2024sympcam}{4}
+\bibcite{chaptoukaev2023stressid}{5}
+\bibcite{chen2018deepphys}{6}
+\bibcite{dehaan2013chrom}{7}
+\bibcite{heimerl2024fordigitstress}{8}
+\bibcite{huo2025multiphys}{9}
+\bibcite{li2026dualmamba}{10}
+\bibcite{liu2020mttscan}{11}
+\bibcite{liu2023efficientphys}{12}
+\bibcite{luo2024physmamba}{13}
+\bibcite{mcduff2014remote}{14}
+\bibcite{sabour2021ubfcphys}{15}
+\bibcite{nikolaiev2020noncontact}{16}
+\bibcite{pilz2018lgi}{17}
+\bibcite{wang2017pos}{18}
+\bibcite{xiong2023graphphys}{19}
+\bibcite{xu2024mtasr}{20}
+\bibcite{yu2019physnet}{21}
+\bibcite{yu2022physformer}{22}
+\bibcite{zhao2024mar}{23}
+\bibcite{zhao2020multiscale}{24}
+\bibcite{zou2025rhythmformer}{25}
+\gdef \@abspage@last{14}
