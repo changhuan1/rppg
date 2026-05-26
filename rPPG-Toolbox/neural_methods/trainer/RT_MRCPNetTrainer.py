@@ -26,7 +26,10 @@ class RTMRCPNetTrainer(BaseTrainer):
     def __init__(self, config, data_loader):
         super().__init__()
         self.config = config
-        self.device = torch.device(config.DEVICE if torch.cuda.is_available() else "cpu")
+        requested_device = str(config.DEVICE).lower()
+        if requested_device.startswith("cuda") and not torch.cuda.is_available():
+            requested_device = "cpu"
+        self.device = torch.device(requested_device)
         self.max_epoch_num = config.TRAIN.EPOCHS
         self.model_dir = config.MODEL.MODEL_DIR
         self.model_file_name = config.TRAIN.MODEL_FILE_NAME
