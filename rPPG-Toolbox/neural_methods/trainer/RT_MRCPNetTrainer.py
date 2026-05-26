@@ -381,8 +381,8 @@ class RTMRCPNetTrainer(BaseTrainer):
             "",
             "## Figures",
             "",
-            "- Figure 3: `fig_region_signal_diversity.png`",
-            "- Figure 4: `fig_attention_reliability.png`",
+            "- Figure 3: `fig_region_signal_diversity.eps`",
+            "- Figure 4: `fig_attention_reliability.eps`",
         ]
         with open(path, "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
@@ -445,8 +445,8 @@ class RTMRCPNetTrainer(BaseTrainer):
             fontsize=14,
         )
         fig.tight_layout(rect=[0, 0, 1, 0.96])
-        path = os.path.join(self.paper_output_dir, "fig_region_signal_diversity.png")
-        fig.savefig(path, dpi=300)
+        path = os.path.join(self.paper_output_dir, "fig_region_signal_diversity.eps")
+        fig.savefig(path, format="eps", dpi=300, bbox_inches="tight")
         plt.close(fig)
         print("Saved Figure 3:", path)
 
@@ -501,14 +501,14 @@ class RTMRCPNetTrainer(BaseTrainer):
 
         ax_attn = fig.add_subplot(gs[1, 1], sharex=ax_signal)
         ax_attn.plot(time_axis, clip_attn, color="#d95f0e", linewidth=1.4)
-        ax_attn.fill_between(time_axis, 0, clip_attn, color="#fdae6b", alpha=0.25)
+        ax_attn.fill_between(time_axis, 0, clip_attn, color="#fee6ce")
         ax_attn.set_xlabel("time (s)")
         ax_attn.set_ylabel("attention")
         ax_attn.set_title("Region-weighted temporal attention")
         ax_attn.grid(alpha=0.25)
 
         fig.tight_layout()
-        path = os.path.join(self.paper_output_dir, "fig_attention_reliability.png")
-        fig.savefig(path, dpi=300)
+        path = os.path.join(self.paper_output_dir, "fig_attention_reliability.eps")
+        fig.savefig(path, format="eps", dpi=300, bbox_inches="tight")
         plt.close(fig)
         print("Saved Figure 4:", path)
