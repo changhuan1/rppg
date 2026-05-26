@@ -215,11 +215,61 @@ class BaseLoader(Dataset):
             end(float): index of ending during train/val split.
         """
         data_dirs_split = self.split_raw_data(data_dirs, begin, end)  # partition dataset 
-        # send data directories to be processed
-        file_list_dict = self.multi_process_manager(data_dirs_split, config_preprocess) 
+        cached_file_list_dict = {}
+        data_dirs_to_process = []
+        cached_raw_files = 0
+
+        for data_dir in data_dirs_split:
+            cached_inputs = self.find_cached_inputs(data_dir["index"])
+            if cached_inputs:
+                cached_file_list_dict[f"cached_{data_dir['index']}"] = cached_inputs
+                cached_raw_files += 1
+            else:
+                data_dirs_to_process.append(data_dir)
+
+        if cached_raw_files:
+            print(f"Reusing cached raw files: {cached_raw_files}/{len(data_dirs_split)}")
+        if data_dirs_to_process:
+            print(f"New raw files to preprocess: {len(data_dirs_to_process)}")
+            processed_file_list_dict = self.multi_process_manager(data_dirs_to_process, config_preprocess)
+            file_list_dict = dict(cached_file_list_dict)
+            file_list_dict.update(dict(processed_file_list_dict))
+        else:
+            print("All requested raw files already have cached clips. Skipping preprocessing.")
+            file_list_dict = cached_file_list_dict
+
         self.build_file_list(file_list_dict)  # build file list
         self.load_preprocessed_data()  # load all data and corresponding labels (sorted for consistency)
-        print("Total Number of raw files preprocessed:", len(data_dirs_split), end='\n\n')
+        print("Total Number of raw files requested:", len(data_dirs_split))
+        print("Total Number of raw files newly preprocessed:", len(data_dirs_to_process), end='\n\n')
+
+    def find_cached_inputs(self, filename):
+        """Return cached input clips for one raw file when both input and label files exist."""
+        input_pattern = os.path.join(self.cached_path, f"{filename}_input*.npy")
+        input_paths = sorted(glob.glob(input_pattern), key=self.cached_clip_sort_key)
+        if not input_paths:
+            return []
+
+        valid_inputs = []
+        missing_labels = 0
+        for input_path in input_paths:
+            label_path = input_path.replace("input", "label")
+            if os.path.exists(label_path):
+                valid_inputs.append(input_path)
+            else:
+                missing_labels += 1
+
+        if missing_labels:
+            print(f"Warning: {filename} has {missing_labels} cached input clips without labels; they will be ignored.")
+        return valid_inputs
+
+    @staticmethod
+    def cached_clip_sort_key(path):
+        basename = os.path.basename(path)
+        match = re.search(r"_input(\d+)\.npy$", basename)
+        if match:
+            return (basename[:match.start()], int(match.group(1)))
+        return (basename, -1)
 
     def preprocess(self, frames, bvps, config_preprocess):
         """Preprocesses a pair of data.
@@ -537,6 +587,7 @@ class BaseLoader(Dataset):
         if not file_list:
             raise ValueError(self.dataset_name, 'No files in file list')
 
+        file_list = sorted(set(file_list), key=self.cached_clip_sort_key)
         file_list_df = pd.DataFrame(file_list, columns=['input_files'])
         os.makedirs(os.path.dirname(self.file_list_path), exist_ok=True)
         file_list_df.to_csv(self.file_list_path)  # save file list to .csv
