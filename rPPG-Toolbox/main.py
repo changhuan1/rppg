@@ -1,8 +1,12 @@
 """ The main function of rPPG deep learning pipeline."""
 
 import argparse
+import atexit
+import os
 import random
+import sys
 import time
+from datetime import datetime
 
 import numpy as np
 import torch
@@ -29,6 +33,61 @@ train_generator = torch.Generator()
 train_generator.manual_seed(RANDOM_SEED)
 
 
+class TeeStream:
+    """Write console output to both terminal and a log file."""
+
+    def __init__(self, stream, log_file):
+        self.stream = stream
+        self.log_file = log_file
+
+    def write(self, text):
+        self.stream.write(text)
+        self.log_file.write(text)
+        self.flush()
+
+    def flush(self):
+        self.stream.flush()
+        self.log_file.flush()
+
+    def isatty(self):
+        return self.stream.isatty()
+
+
+def setup_console_logging(config, args):
+    if getattr(args, "disable_file_log", False):
+        return None
+
+    exp_name = config.TRAIN.DATA.EXP_DATA_NAME
+    if config.TOOLBOX_MODE == "only_test":
+        exp_name = config.TEST.DATA.EXP_DATA_NAME
+    elif config.TOOLBOX_MODE == "unsupervised_method":
+        exp_name = config.UNSUPERVISED.DATA.EXP_DATA_NAME
+
+    model_name = getattr(config.TRAIN, "MODEL_FILE_NAME", "run")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_dir = os.path.join(config.LOG.PATH, exp_name, "logs")
+    os.makedirs(log_dir, exist_ok=True)
+    log_path = args.log_file or os.path.join(log_dir, f"{model_name}_{timestamp}.log")
+    os.makedirs(os.path.dirname(log_path) or ".", exist_ok=True)
+
+    log_file = open(log_path, "a", encoding="utf-8", buffering=1)
+    original_stdout = sys.stdout
+    original_stderr = sys.stderr
+    sys.stdout = TeeStream(original_stdout, log_file)
+    sys.stderr = TeeStream(original_stderr, log_file)
+
+    def close_log():
+        sys.stdout = original_stdout
+        sys.stderr = original_stderr
+        log_file.close()
+
+    atexit.register(close_log)
+    print(f"Console log will be saved to: {log_path}")
+    print(f"Run started at: {datetime.now().isoformat(timespec='seconds')}")
+    print(f"Command: {' '.join(sys.argv)}", end="\n\n")
+    return log_path
+
+
 def seed_worker(worker_id):
     worker_seed = torch.initial_seed() % 2 ** 32
     np.random.seed(worker_seed)
@@ -39,6 +98,10 @@ def add_args(parser):
     """Adds arguments for parser."""
     parser.add_argument('--config_file', required=False,
                         default="configs/train_configs/PURE_PURE_UBFC-rPPG_TSCAN_BASIC.yaml", type=str, help="The name of the model.")
+    parser.add_argument("--log_file", default=None, type=str,
+                        help="Optional path for saving console output. Defaults to LOG.PATH/EXP_DATA_NAME/logs.")
+    parser.add_argument("--disable_file_log", action="store_true",
+                        help="Disable automatic console log saving.")
     '''Neural Method Sample YAML LIST:
       SCAMPS_SCAMPS_UBFC-rPPG_TSCAN_BASIC.yaml
       SCAMPS_SCAMPS_UBFC-rPPG_DEEPPHYS_BASIC.yaml
@@ -152,6 +215,7 @@ if __name__ == "__main__":
 
     # configurations.
     config = get_config(args)
+    setup_console_logging(config, args)
     print('Configuration:')
     print(config, end='\n\n')
 
