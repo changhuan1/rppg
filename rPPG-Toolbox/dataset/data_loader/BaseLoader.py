@@ -523,7 +523,7 @@ class BaseLoader(Dataset):
             count += 1
         return input_path_name_list, label_path_name_list
 
-    def multi_process_manager(self, data_dirs, config_preprocess, multi_process_quota=8):
+    def multi_process_manager(self, data_dirs, config_preprocess, multi_process_quota=1):
         """Allocate dataset preprocessing across multiple processes.
 
         Args:
@@ -537,6 +537,7 @@ class BaseLoader(Dataset):
         file_num = len(data_dirs)
         choose_range = range(0, file_num)
         pbar = tqdm(list(choose_range))
+        failed_processes = []
 
         # shared data resource
         manager = mp.Manager()  # multi-process manager
@@ -560,13 +561,35 @@ class BaseLoader(Dataset):
                     if not p_.is_alive():
                         p_list.remove(p_)
                         p_.join()
+                        if p_.exitcode != 0:
+                            failed_processes.append(p_.exitcode)
                         running_num -= 1
                         pbar.update(1)
         # join all processes
         for p_ in p_list:
             p_.join()
+            if p_.exitcode != 0:
+                failed_processes.append(p_.exitcode)
             pbar.update(1)
         pbar.close()
+
+        if failed_processes:
+            raise RuntimeError(
+                f"{len(failed_processes)} preprocessing subprocess(es) failed with "
+                f"exit codes {failed_processes}. This often means the job ran out of "
+                "memory while reading large videos. Re-run after reducing preprocessing "
+                "parallelism or using a larger-memory machine."
+            )
+
+        missing_items = []
+        for i in choose_range:
+            if i not in file_list_dict:
+                missing_items.append(data_dirs[i].get("index", str(i)))
+        if missing_items:
+            raise RuntimeError(
+                "Preprocessing finished but some raw files did not produce cached clips: "
+                + ", ".join(missing_items)
+            )
 
         return file_list_dict
 
