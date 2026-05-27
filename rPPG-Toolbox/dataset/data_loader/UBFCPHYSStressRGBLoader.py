@@ -59,6 +59,10 @@ class UBFCPHYSStressRGBLoader(BaseLoader):
         return sorted(dirs, key=lambda x: x["index"])
 
     def split_raw_data(self, data_dirs, begin, end):
+        split_method = str(getattr(self.config_data, "SPLIT_METHOD", "subject_order")).lower()
+        if split_method.startswith("subject_kfold"):
+            return self.split_raw_data_subject_kfold(data_dirs, split_method)
+
         if begin == 0 and end == 1:
             return data_dirs
 
@@ -74,6 +78,52 @@ class UBFCPHYSStressRGBLoader(BaseLoader):
         for subject in selected_subjects:
             split_dirs.extend(data_by_subject[subject])
         return sorted(split_dirs, key=lambda x: x["index"])
+
+    def split_raw_data_subject_kfold(self, data_dirs, split_method):
+        data_by_subject = {}
+        for data in data_dirs:
+            data_by_subject.setdefault(data["subject"], []).append(data)
+
+        subjects = sorted(data_by_subject.keys(), key=self.subject_sort_key)
+        fold_count = self.parse_kfold_count(split_method)
+        if len(subjects) < fold_count:
+            raise ValueError(f"Need at least {fold_count} subjects for {split_method}, got {len(subjects)}.")
+
+        fold_name = str(getattr(self.config_data.FOLD, "FOLD_NAME", "fold0"))
+        fold_match = re.search(r"(\d+)$", fold_name)
+        fold_idx = int(fold_match.group(1)) if fold_match else 0
+        fold_idx = fold_idx % fold_count
+
+        folds = [list(fold) for fold in np.array_split(subjects, fold_count)]
+        test_subjects = set(folds[fold_idx])
+        valid_subjects = set(folds[(fold_idx + 1) % fold_count])
+        if self.dataset_name == "test":
+            selected_subjects = test_subjects
+        elif self.dataset_name == "valid":
+            selected_subjects = valid_subjects
+        elif self.dataset_name == "train":
+            selected_subjects = set(subjects) - test_subjects - valid_subjects
+        else:
+            selected_subjects = set(subjects)
+
+        print(
+            f"{self.dataset_name} {split_method} {fold_name}: "
+            f"{', '.join(sorted(selected_subjects, key=self.subject_sort_key))}"
+        )
+        split_dirs = []
+        for subject in sorted(selected_subjects, key=self.subject_sort_key):
+            split_dirs.extend(data_by_subject[subject])
+        return sorted(split_dirs, key=lambda x: x["index"])
+
+    @staticmethod
+    def parse_kfold_count(split_method):
+        match = re.search(r"(\d+)$", split_method)
+        return int(match.group(1)) if match else 5
+
+    @staticmethod
+    def subject_sort_key(subject):
+        match = re.search(r"(\d+)$", subject)
+        return int(match.group(1)) if match else subject
 
     def preprocess_dataset_subprocess(self, data_dirs, config_preprocess, i, file_list_dict):
         saved_filename = data_dirs[i]["index"]
