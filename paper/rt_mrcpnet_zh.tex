@@ -35,69 +35,48 @@
 
 \section{引言}
 
-压力识别真正有价值的场景，往往不在实验室里。在线面试、远程学习、远程医疗和日常工作负荷监测都需要低打扰、易部署的感知方式，而被试通常不可能长期佩戴心电电极、皮肤电传感器、光电容积脉搏波夹或呼吸带。普通摄像头提供了一种更自然的非接触式入口：人脸视频不仅记录表情、视线和头部运动，也包含由血容量变化引起的细微皮肤颜色波动。已有远程光电容积脉搏波研究表明，这类颜色波动可以用于心率估计、心率变异性分析、情绪状态监测和压力相关推断~\cite{mcduff2014remote,benezeth2018remotehrv,nikolaiev2020noncontact}；UBFC-Phys、StressID 和 ForDigitStress 等数据集也进一步将人脸视频放入社会压力或数字交互协议中，并同步采集接触式生理信号、主观评分和任务标签~\cite{sabour2021ubfcphys,chaptoukaev2023stressid,heimerl2024fordigitstress}。因此，基于人脸视频的非接触式压力识别具有明确应用价值；但其关键困难在于，压力相关颜色变化非常微弱、局部且容易被身份外观、运动和光照变化淹没。
+压力识别真正有价值的场景，往往不在实验室里。在线面试、远程学习、远程医疗和日常工作负荷监测都需要低打扰、易部署的感知方式。普通摄像头提供了一种自然的非接触式信号来源：人脸视频不仅记录表情、视线和头部运动，也包含由血容量变化引起的微弱皮肤颜色波动。已有远程光电容积脉搏波研究表明，这类颜色波动可以用于心率估计、心率变异性分析、情绪状态监测和压力相关推断~\cite{mcduff2014remote,benezeth2018remotehrv,nikolaiev2020noncontact}；UBFC-Phys、StressID 和 ForDigitStress 等数据集也进一步将人脸视频放入社会压力或数字交互协议中~\cite{sabour2021ubfcphys,chaptoukaev2023stressid,heimerl2024fordigitstress}。因此，基于人脸视频的非接触式压力识别具有明确应用价值，但其关键困难在于压力相关颜色变化微弱、局部且容易被身份外观、运动和光照变化淹没。
 
-现有人脸视频压力识别方法仍容易在“完整视觉建模”和“全局生理信号摘要”之间损失有效证据。一方面，完整视频模型保留了丰富的空间纹理和外观细节，DeepPhys、PhysNet、MTTS-CAN 和 EfficientPhys 等工作已经证明深度网络能够从视频中学习远程生理表示~\cite{chen2018deepphys,yu2019physnet,liu2020mttscan,liu2023efficientphys}；另一方面，传统非接触式压力流程通常先恢复一条全脸远程生理信号，再计算心率或心率变异性特征进行分类~\cite{mcduff2014remote,nikolaiev2020noncontact}。前者在小规模压力数据集上可能学习到被试身份、背景、肤色或任务场景等捷径，后者则可能在早期把额头、脸颊、鼻部和下巴等区域的差异压缩成单一全局信号。已有多尺度、多区域和图建模研究表明，不同面部区域的远程生理信号质量并不相同，区域选择仍是影响鲁棒性的关键问题~\cite{zhao2020multiscale,xiong2023graphphys,bondarenko2025regions}。因此，非接触式压力识别需要一种更紧凑但保留区域差异的表示，而不是直接依赖完整图像帧或单一路径的全脸生理摘要。
+现有人脸视频方法容易在“完整视觉建模”和“全局生理信号摘要”之间损失有效证据。完整视频模型保留丰富外观细节，DeepPhys、PhysNet、MTTS-CAN 和 EfficientPhys 等工作证明深度网络可以学习远程生理表示~\cite{chen2018deepphys,yu2019physnet,liu2020mttscan,liu2023efficientphys}，但小规模压力数据使其容易学习身份、背景、肤色或任务场景等捷径。传统流程则先恢复全脸 rPPG 信号，再分类心率或心率变异性特征~\cite{mcduff2014remote,nikolaiev2020noncontact}，但这可能过早压缩额头、脸颊、鼻部和下巴之间的差异。由于不同面部区域的 rPPG 质量并不相同~\cite{zhao2020multiscale,xiong2023graphphys,bondarenko2025regions}，非接触式压力识别需要一种紧凑且保留区域证据的表示。
 
-现有聚合策略还难以适应压力视频中时间位置和面部区域可靠性的动态变化。在社会压力任务中，被试可能说话、计算、眨眼、转头或产生表情变化，同一个区域在不同片段中的信号质量也会随遮挡、反光和非对称光照而变化；将所有时间位置或所有区域固定平均，容易把短时有效反应与噪声片段混合在一起。注意力机制适合处理这一问题，因为它可以根据当前输入为不同时间位置或不同区域分配权重，突出更可靠的颜色动态，同时降低不稳定片段和低质量区域的影响。已有生理视频方法已经使用卷积注意力、时序注意力或峰值注意力增强远程生理测量和压力识别~\cite{chen2018deepphys,liu2020mttscan,xu2024mtasr}，但大规模 Transformer 式建模并不一定适合样本有限的压力数据集。因此，仍需要面向压力识别任务设计轻量注意力机制，在获得自适应选择能力的同时控制参数量和过拟合风险。
+另一个挑战是压力视频中时间位置和面部区域的可靠性会动态变化。说话、计算、眨眼、转头、遮挡、反光和非对称光照可能在不同时间污染不同区域，固定平均会把有效反应与噪声片段混合。注意力机制可以根据输入为时间位置和区域分配权重，已有生理视频方法也使用注意力增强远程生理测量或压力识别~\cite{chen2018deepphys,liu2020mttscan,xu2024mtasr}。不过，对于样本有限的压力数据集，轻量注意力设计比大规模 Transformer 式模型更适合。
 
-针对上述挑战，本文提出 RT-MRCPNet，即区域-时间注意力多区域颜色脉动网络。该方法不直接依赖完整人脸帧，也不先将视频压缩为单一全局生理信号，而是将不同面部区域视为多路弱生理观测源，直接从区域颜色动态中学习压力相关表示。在模型设计上，RT-MRCPNet 通过时间注意力关注每个区域内更可靠的片段，并通过区域注意力自适应融合当前视频中更有判别价值的面部区域。由此，RT-MRCPNet 在完整视频建模和人工生理特征流程之间提供了一种轻量、可解释且面向 subject-independent 压力识别的建模方案。
-
-本文的主要贡献如下：
-\begin{itemize}
-    \item 将非接触式压力识别建模为多区域颜色脉动序列学习问题，将人脸视频压缩为区域级 RGB 时序序列，而不是直接处理完整图像帧。
-    \item 设计轻量级区域-时间注意力网络，分别建模区域内部的时间可靠性和区域之间的判别贡献。
-    \item 在 UBFC-Phys 跨被试协议下验证本文方法，RT-MRCPNet 达到 88.42\% ACC、88.15\% F1-score 和 91.54\% AUC，优于全脸 RGB、单区域、多区域固定融合、传统 rPPG 特征和轻量视频基线。
-\end{itemize}
+本文提出 RT-MRCPNet，即区域-时间注意力多区域颜色脉动网络。该方法将面部区域视为多路弱生理观测源，直接从区域 RGB 动态中学习压力相关表示；时间注意力用于选择每个区域内更可靠的片段，区域注意力用于融合更有判别力的面部区域。本文贡献包括：（1）将视频压力识别建模为多区域颜色脉动序列学习问题；（2）设计轻量区域-时间注意力网络，分别建模时间可靠性和区域贡献；（3）在 UBFC-Phys 跨被试协议下验证方法，RT-MRCPNet 达到 88.42\% ACC、88.15\% F1-score 和 91.54\% AUC，优于全脸 RGB、单区域、多区域固定融合、传统 rPPG 特征和轻量视频基线。
 
 \section{相关工作}
 
-\subsection{压力识别与多模态压力数据集}
+\subsection{压力识别与多模态数据}
 
-压力识别长期以来主要依赖接触式生理信号。心电、皮肤电、光电容积脉搏波、呼吸和皮肤温度等模态之所以重要，是因为它们接近压力反应的生理机制~\cite{healey2005drivingstress,schmidt2018wesad,schmidt2019wearableaffectreview}。心率变异性能够描述自主神经调节，皮肤电常被视为交感唤醒的指标，呼吸节律也会随认知负荷和情绪紧张发生变化。这类方法在受控实验环境中可靠，但代价是传感器佩戴、同步采集和用户配合~\cite{schmidt2018wesad,bota2022empathicschool}。对于远程面试或在线学习等自然场景，传感器本身就可能改变被试表现。
+压力识别长期依赖心电、皮肤电、光电容积脉搏波、呼吸和皮肤温度等接触式生理信号，因为它们接近压力反应机制~\cite{healey2005drivingstress,schmidt2018wesad,schmidt2019wearableaffectreview}。心率变异性描述自主神经调节，皮肤电反映交感唤醒，呼吸节律也会随认知负荷变化，但这些传感器需要佩戴、同步和用户配合~\cite{schmidt2018wesad,bota2022empathicschool}。因此，近年数据集开始走向更真实的多模态场景：UBFC-Phys 在静息、演讲和算术任务中采集人脸视频以及腕带 BVP 和 EDA~\cite{sabour2021ubfcphys}；StressID 在情绪、认知和公开演讲刺激下记录视频、音频、ECG、EDA 和呼吸~\cite{chaptoukaev2023stressid}；ForDigitStress 面向数字化面试，包含视频、眼动、音频、PPG 和 EDA~\cite{heimerl2024fordigitstress}。这些数据集推动了非接触式压力识别，也说明高质量压力数据仍然规模有限且依赖具体协议。
 
-近几年的数据集体现出一个清晰趋势：压力识别正在从单一接触式传感器走向更真实的多模态场景。UBFC-Phys 在静息、演讲和算术任务中采集人脸视频，同时记录腕带血容量脉搏和皮肤电信号~\cite{sabour2021ubfcphys}。StressID 包含 65 名被试在情绪视频、认知任务和公开演讲等多种刺激下的面部视频、音频、心电、皮肤电和呼吸信号~\cite{chaptoukaev2023stressid}。ForDigitStress 面向数字化求职面试场景，包含视频、面部 landmarks、眼动、音频、光电容积脉搏波和皮肤电等信息~\cite{heimerl2024fordigitstress}。这些数据集重要的地方不只是模态更多，而是它们把压力识别放回了真实交互过程：说话、计算、表情变化和姿态变化都不再是可以简单剔除的噪声。与此同时，它们也提醒我们，高质量压力数据集规模有限，任务协议差异较大，因此模型设计需要兼顾紧凑性、可复现性和 subject-independent 泛化能力。
+\subsection{非接触式压力识别与人脸颜色线索}
 
-\subsection{基于人脸视频的非接触式压力识别}
+早期非接触式研究通常先从人脸视频估计远程生理指标，再用于分类。McDuff 等~\cite{mcduff2014remote} 利用视频估计心率、呼吸和心率变异性并进行认知压力分类；Nikolaiev 等~\cite{nikolaiev2020noncontact} 从普通摄像头 rPPG 中恢复 HRV 指标；Benezeth 等~\cite{benezeth2018remotehrv} 探索远程 HRV 在情绪监测中的作用。近期工作开始转向直接视频学习：Xu 等~\cite{xu2024mtasr} 使用多任务学习和峰值注意力进行人脸视频压力识别，SympCam~\cite{braun2024sympcam} 及相关研究~\cite{braun2023sympathetic} 则从面部和手部视频估计交感唤醒。这些研究表明，压力识别与 rPPG 相关，但并不等同于恢复一条干净脉搏波；判别线索可能表现为局部颜色动态、短时峰值或任务诱发的说话和运动。
 
-早期非接触式压力研究通常将远程生理信号作为中间表示。McDuff 等~\cite{mcduff2014remote} 证明，可以从人脸视频中估计心率、呼吸和心率变异性等生理参数，并用于认知压力分类。Nikolaiev 等~\cite{nikolaiev2020noncontact} 进一步研究了基于普通摄像头视频的远程光电容积脉搏波压力检测流程，并从视频中恢复心率变异性指标。Benezeth 等~\cite{benezeth2018remotehrv} 探索了远程心率变异性在情绪状态监测中的应用。这些工作给出了关键证据：普通摄像头并非只能记录外观，也可以捕获与压力相关的弱生理变化。
-
-近年来，相关工作开始从“先估计生理指标再分类”转向直接视频学习。Xu 等~\cite{xu2024mtasr} 提出基于多任务学习和峰值注意力的非接触式压力识别方法，说明面向压力任务的注意力机制已经成为一个重要方向。SympCam~\cite{braun2024sympcam} 及其相关研究~\cite{braun2023sympathetic} 则利用面部和手部视频远程估计交感唤醒，并用于身体压力检测。这些研究表明，压力识别不是简单的心率估计问题。判别证据可能表现为局部颜色动态、短时峰值、外周血流变化，也可能混入任务诱发的说话和运动模式中。因此，模型不应只追求一条“最干净”的全局脉搏波，而应保留区域级时间证据，并学习如何在当前片段中使用这些证据。
-
-\subsection{人脸颜色动态与远程生理线索}
-
-远程生理测量为本文使用区域颜色时序提供了直接依据。传统远程光电容积脉搏波算法通常从面部皮肤颜色变化中提取周期性血容量线索，并通过颜色空间投影、盲源分离或局部一致性建模抑制光照和运动干扰，代表性方法包括 CHROM~\cite{dehaan2013chrom}、POS~\cite{wang2017pos} 和 LGI~\cite{pilz2018lgi}。这些方法说明 RGB 颜色轨迹并非普通外观特征，而是可能包含与心血管活动相关的弱生理信息；但它们通常依赖较强的光照、皮肤区域和周期性假设，且目标主要是恢复心率或脉搏波形。
-
-深度学习方法进一步证明，生理视频中的有效信息可以由模型从时空变化中自动学习。DeepPhys~\cite{chen2018deepphys} 将注意力引入视频生理测量，PhysNet~\cite{yu2019physnet} 使用时空网络恢复远程脉搏信号，MTTS-CAN~\cite{liu2020mttscan} 通过多任务时序移位注意力同时估计心血管和呼吸相关信号，EfficientPhys~\cite{liu2023efficientphys} 则强调更简单、快速的摄像头生理测量。这些研究共同表明，端到端模型能够比手工流程更灵活地利用视频中的微弱颜色变化。不过，它们的优化目标通常是生命体征估计，评价重点是波形质量或心率误差；压力识别更关注心理或社会任务诱发的判别模式，因此需要将远程生理测量中的颜色动态线索转化为更贴近压力分类的表示，而不是简单沿用高保真脉搏波重建流程。
+传统 rPPG 方法如 CHROM~\cite{dehaan2013chrom}、POS~\cite{wang2017pos} 和 LGI~\cite{pilz2018lgi} 说明 RGB 轨迹包含弱心血管信息；DeepPhys~\cite{chen2018deepphys}、PhysNet~\cite{yu2019physnet}、MTTS-CAN~\cite{liu2020mttscan} 和 EfficientPhys~\cite{liu2023efficientphys} 进一步从视频时空变化中学习生理证据。不过，这些方法通常以生命体征估计为目标，评价重点是波形质量或心率误差。压力识别更关注心理或社会任务诱发的判别模式，因此需要将远程生理颜色线索转化为适合分类的表示。
 
 \subsection{多区域建模与注意力机制}
 
-面部区域选择是远程生理测量中的关键问题。不同区域由于局部血流、皮肤纹理、姿态、光照和面部运动不同，信号质量存在明显差异。已有多尺度或多区域方法利用空间多样性提升心率估计鲁棒性~\cite{zhao2020multiscale}。近期关于面部区域作用的系统研究也指出，区域选择仍然是远程生理测量中的开放问题，而不是一个已经解决的预处理细节~\cite{bondarenko2025regions}。GraphPhys 进一步使用图神经网络建模不同面部区域之间的关系，并强调同一个体不同面部区域生理信号之间的一致性~\cite{xiong2023graphphys}。这些研究支持一个基本判断：面部区域信息不应在模型早期被过度压缩。
-
-注意力机制同样广泛用于生理视频分析。空间注意力可以抑制背景和非皮肤区域，时间注意力可以强调可靠帧或有效波形片段，通道注意力可以建模颜色通道或特征维度之间的关系。在压力识别中，视频片段的标签可能由短时但关键的阶段决定，例如演讲中的高负荷片段、算术任务中的努力阶段或短暂唤醒变化，因此已有方法开始利用注意力机制挖掘更具判别性的时空证据。然而，现有注意力设计多服务于完整视频表征或远程生理信号重建，对压力识别中“哪些时间片段可靠”和“哪些面部区域更有贡献”这两个问题的联合建模仍不充分。
-
-\subsection{本文方法定位}
-
-本文并不试图在远程脉搏波重建误差上与大型模型竞争，而是回答一个更聚焦的问题：在 subject-independent 压力识别中，紧凑的区域颜色表示能否比全脸平均或单一区域表示提供更稳健的判别信息？本文方法与已有研究的区别主要体现在三个方面。第一，本文不将整张人脸视为单一全局信号，而是将多个面部区域作为独立颜色时序观测源。第二，本文不以重建高保真远程脉搏波形作为最终目标，而是直接面向压力分类学习区域颜色动态。第三，本文采用两个轻量注意力阶段：一个用于区域内部的时间聚合，一个用于区域之间的贡献融合。这样的设计在保持模型容量可控的同时，提高了多区域证据在 subject-independent 压力识别中的利用效率。
+面部区域选择是 rPPG 质量的关键因素，因为局部血流、皮肤纹理、姿态、光照和运动会导致不同 ROI 的信噪比差异。多尺度和多 ROI 方法可以提升心率估计鲁棒性~\cite{zhao2020multiscale}，近期研究也指出区域选择仍是开放问题~\cite{bondarenko2025regions}，GraphPhys 则用图神经网络建模面部区域关系~\cite{xiong2023graphphys}。注意力机制同样常用于抑制背景或不可靠帧，并突出有效波形片段。然而，现有注意力设计多服务于完整视频表征或远程生理重建。本文关注的是更聚焦的问题：能否使用紧凑区域颜色序列，并通过两个轻量注意力阶段分别完成区域内部时间聚合和区域之间贡献融合，从而提升 subject-independent 压力识别。
 
 \section{方法}
 
 \subsection{问题定义}
 
-给定一个人脸视频片段 $V=\{I_1,I_2,\ldots,I_T\}$，其中 $T$ 表示帧数，目标是预测二分类压力标签 $y \in \{0,1\}$。其中，$0$ 表示非压力状态，$1$ 表示压力状态。本文不将完整视频帧序列直接输入大型视频网络，而是将视频转化为多区域颜色脉动表示：
+给定人脸视频片段 $V=\{I_1,I_2,\ldots,I_T\}$，目标是预测二分类标签 $y \in \{0,1\}$，其中 $0$ 表示非压力，$1$ 表示压力。视频被表示为
 \begin{equation}
     X \in \mathbb{R}^{K \times T \times C},
 \end{equation}
-其中 $K$ 表示面部区域数量，$C=3$ 表示 RGB 三个颜色通道。对于一个 batch，模型输入为 $X \in \mathbb{R}^{B \times K \times T \times C}$。
+其中 $K$ 表示面部区域数量，$T$ 表示片段长度，$C=3$ 表示 RGB 三个颜色通道。对于一个 batch，模型输入为 $X \in \mathbb{R}^{B \times K \times T \times C}$。
 
 \subsection{多区域颜色脉动表示}
 
-对于每一帧图像，首先检测并裁剪人脸区域，然后将裁剪后的人脸缩放到固定分辨率，使预定义区域在不同帧之间保持几何一致。图~\ref{fig:region_partition_zh} 展示了本文使用的五个面部区域，包括额头、左脸颊、右脸颊、鼻部和下巴。这些区域无需复杂 landmarks 即可提取，并覆盖了远程生理测量中常用的面部皮肤区域。其中，额头通常较稳定但可能受头发和高光影响，左右脸颊通常包含较明显的皮肤颜色动态，鼻部位于人脸中心但容易受到运动和反光影响，下巴则提供下半脸观测但可能受到说话动作干扰。
+对于每一帧，首先检测、裁剪并缩放人脸，使固定 ROI 在不同帧间保持几何一致。图~\ref{fig:region_partition_zh} 展示了本文使用的五个区域：额头、左脸颊、右脸颊、鼻部和下巴。它们覆盖 rPPG 常用皮肤区域，同时具有不同可靠性：脸颊通常包含较清晰的颜色动态，额头较稳定但可能受头发影响，鼻部易受高光影响，下巴易受说话动作干扰。
 
 \begin{figure}
 \centering
 \includegraphics[width=0.98\textwidth]{f2.eps}
-\caption{本文多区域颜色脉动表示使用的五个面部区域。归一化人脸被划分为额头、左脸颊、右脸颊、鼻部和下巴五个 ROI，每个区域进一步转换为 RGB 颜色时序序列。}
+\caption{本文多区域颜色脉动表示使用的五个面部区域。}
 \label{fig:region_partition_zh}
 \end{figure}
 
@@ -111,25 +90,23 @@
 \end{equation}
 将所有区域序列堆叠后得到 $X \in \mathbb{R}^{K \times T \times C}$，其中 $C=3$，对应 RGB 三个颜色通道。
 
-为了降低个体肤色、曝光和视频亮度差异，本文对每个区域、每个颜色通道分别进行时间维度标准化：
+本文对每个区域、每个颜色通道分别进行时间维度标准化：
 \begin{equation}
     \hat{X}_{k,:,c} = \frac{X_{k,:,c} - \mu_{k,c}}{\sigma_{k,c}+\epsilon}.
 \end{equation}
-其中，$\hat{X}$ 表示标准化后的颜色序列，$c$ 表示颜色通道索引，$\mu_{k,c}$ 和 $\sigma_{k,c}$ 分别表示第 $k$ 个区域第 $c$ 个通道在整个片段上的均值和标准差，$\epsilon$ 为防止除零的极小常数。该表示去除了完整视频帧中的大部分空间冗余，同时保留了区域级颜色动态。
+其中，$\hat{X}$ 表示标准化序列，$c$ 为颜色通道索引，$\mu_{k,c}$ 和 $\sigma_{k,c}$ 为片段内均值和标准差，$\epsilon$ 防止除零。该表示去除大部分空间冗余，同时保留区域颜色动态。
 
 \subsection{区域时序编码器}
 
-每个区域序列由共享的一维时序编码器进行编码。对于一个批量输入，首先将标准化后的多区域张量 $\hat{X} \in \mathbb{R}^{B \times K \times T \times C}$ 展开并调整为 $\tilde{X} \in \mathbb{R}^{B K \times C \times T}$，然后输入由多层一维卷积构成的时序编码器：
+每个区域序列由共享的一维时序编码器进行编码。给定标准化张量 $\hat{X}$，先将其调整为 $\tilde{X}$，再输入多层一维卷积块：
 \begin{equation}
     H = E_{\theta}(\tilde{X}),
 \end{equation}
-经过维度调整后得到 $H \in \mathbb{R}^{B K \times T \times D}$，其中 $E_{\theta}$ 表示参数为 $\theta$ 的共享时序编码器，$D$ 为隐藏维度。为便于后续表述，记 $h_{k,t} \in \mathbb{R}^{D}$ 为 $H$ 中第 $k$ 个区域在第 $t$ 个时间位置对应的特征向量。所有区域共享同一个编码器有两个原因。第一，不同面部区域的低层颜色时序变化具有相似结构。第二，共享参数可以降低模型复杂度，减少小规模压力数据上的过拟合风险。
-
-该编码器采用较短的时间卷积核，用于捕获局部变化和平滑趋势。与完整三维卷积视频网络不同，本文不在原始空间图像网格上进行重计算，而是先将空间信息压缩为区域序列，再重点建模时间动态和区域融合。
+经过维度调整后，$H \in \mathbb{R}^{B K \times T \times D}$，其中 $D$ 为隐藏维度。记 $h_{k,t} \in \mathbb{R}^{D}$ 为第 $k$ 个区域在第 $t$ 个时间位置的特征。共享编码器可以捕获不同区域共有的低层颜色动态，同时降低参数量和过拟合风险；短时间卷积核则用于建模局部变化，而无需反复处理完整空间图像网格。
 
 \subsection{时间注意力}
 
-一个视频片段中的所有时间位置并不等价。在社会压力任务中，被试可能说话、计算、眨眼或转头。部分时间位置包含稳定颜色动态，部分时间位置则可能受到运动或光照污染。对于第 $k$ 个区域的时序特征，时间注意力为每个时间位置预测一个分数：
+对于第 $k$ 个区域的时序特征，时间注意力为每个时间位置预测一个分数：
 \begin{equation}
     e_{k,t} = \mathbf{w}_t^\top \tanh(\mathbf{W}_t h_{k,t}),
 \end{equation}
@@ -141,7 +118,7 @@
 \begin{equation}
     r_k = \sum_{t=1}^{T}\alpha_{k,t} h_{k,t}.
 \end{equation}
-这样，每个区域都拥有独立的时间权重。该设计很重要，因为说话动作可能更多影响下巴，反光可能更多影响鼻部，而额头和脸颊受到的干扰并不相同。
+这样，每个区域拥有独立时间权重，可以在区域融合前抑制说话、运动或光照造成的不稳定片段。
 
 \subsection{区域注意力}
 
@@ -149,7 +126,7 @@
 \begin{equation}
     s_k = \mathbf{w}_r^\top \tanh(\mathbf{W}_r r_k),
 \end{equation}
-其中 $\mathbf{W}_r$ 为区域注意力中的特征投影矩阵，$\mathbf{w}_r$ 为用于生成区域标量分数的权重向。然后通过 softmax 得到区域权重：
+其中 $\mathbf{W}_r$ 为区域注意力中的特征投影矩阵，$\mathbf{w}_r$ 为用于生成区域标量分数的权重向量。然后通过 softmax 得到区域权重：
 \begin{equation}
     \beta_k = \frac{\exp(s_k)}{\sum_{j=1}^{K}\exp(s_j)}.
 \end{equation}
@@ -161,17 +138,17 @@
 \begin{equation}
     z = z_{\mathrm{attn}} + \frac{1}{K}\sum_{k=1}^{K} r_k.
 \end{equation}
-最终，$z$ 被输入两层 MLP 分类器，得到压力分类 logits：
+最终，$z$ 输入两层 MLP 分类器，得到 logits：
 \begin{equation}
     o = \mathrm{MLP}(z).
 \end{equation}
 
-上述模块共同构成 RT-MRCPNet 的整体流程，如图~\ref{fig:overview_zh} 所示。模型先将人脸视频转换为多区域 RGB 颜色时序序列，再依次经过共享时序编码、时间注意力和区域注意力，最终输出片段级压力分类结果。
+图~\ref{fig:overview_zh} 总结了 RT-MRCPNet 的整体流程。
 
 \begin{figure}
 \centering
 \includegraphics[width=0.98\textwidth]{f1.eps}
-\caption{RT-MRCPNet 模型结构图。人脸视频片段首先被转换为多区域 RGB 颜色时序序列，经共享时序编码器提取区域动态特征，再通过时间注意力和区域注意力完成自适应聚合，最终输出压力/非压力分类结果。}
+\caption{RT-MRCPNet 模型结构图。}
 \label{fig:overview_zh}
 \end{figure}
 
@@ -181,31 +158,29 @@
 \begin{equation}
     \mathcal{L}_{cls} = -\sum_{c=1}^{2} y_c \log p_c,
 \end{equation}
-其中 $y_c$ 表示真实标签 $y$ 的 one-hot 编码在类别 $c$ 上的取值。本文只使用分类监督，使实验重点集中在区域 RGB 动态和注意力聚合对压力分类的贡献上，避免将辅助重建或对比学习带来的影响混入主比较。
+其中 $y_c$ 表示真实标签的 one-hot 编码在类别 $c$ 上的取值。本文只使用分类监督，使比较聚焦于区域 RGB 动态和注意力聚合。
 
 \section{实验}
 
 \subsection{数据集与标签定义}
 
-本文主要实验面向社会压力人脸视频数据。对于 UBFC-Phys 类型数据，每名被试包含静息、演讲和算术三个任务。按照常见社会压力协议解释，T1 表示静息任务并被标记为非压力状态（$y=0$），T2 和 T3 分别表示演讲任务和算术任务，并被标记为压力状态（$y=1$）。该二分类设定清晰、可复现，并与本文关注的问题一致：在不使用接触式传感器的情况下，视频模型能否区分静息片段和社会压力任务片段。
+本文主要实验使用 UBFC-Phys 类型社会压力人脸视频。T1 为静息任务，标记为非压力（$y=0$）；T2 和 T3 分别为演讲和算术任务，标记为压力（$y=1$）。
 
 \subsection{Subject-Independent 协议}
 
-所有实验均采用 subject-independent 划分，即同一被试的视频片段不能同时出现在训练集和测试集中。否则，模型可能学习到身份外观，而不是压力相关动态。固定划分使用 70\% 被试训练、15\% 被试验证、15\% 被试测试。
-
-验证集仅用于模型选择，测试集仅用于最终报告。由于小规模压力数据对被试划分较敏感，本文记录具体被试编号或随机种子，以保证实验可复现。
+所有实验均采用 subject-independent 划分，即同一被试的视频片段不能同时出现在训练集和测试集中。固定划分使用 70\% 被试训练、15\% 被试验证、15\% 被试测试，并根据验证集 F1-score 选择 checkpoint。
 
 \subsection{实现细节}
 
-人脸区域被裁剪并缩放到 $128 \times 128$。每个视频被划分为固定长度片段，默认片段长度为 $T=160$。本文使用五个固定面部区域。对于每个区域，提取逐帧 RGB 均值序列并进行时间标准化。模型隐藏维度为 128，优化器为 AdamW，初始学习率为 $10^{-3}$，batch size 为 64，训练轮数为 100。模型根据验证集 F1-score 选择最优 checkpoint。模型使用 PyTorch 2.1 在单张 NVIDIA GeForce RTX 3090 GPU 上训练，总训练时间约为 1.50 小时。
+人脸被裁剪到 $128 \times 128$，并划分为长度 $T=160$ 的片段。本文使用五个固定 ROI，提取逐帧 RGB 均值序列并进行时间标准化。模型隐藏维度为 128，使用 AdamW 优化器，初始学习率为 $10^{-3}$，batch size 为 64，训练 100 轮，并在单张 NVIDIA RTX 3090 上用 PyTorch 2.1 实现。
 
 \subsection{评价指标}
 
-本文报告 Accuracy、F1-score 和 AUC，并使用混淆矩阵展示最终模型的错误分布。考虑到压力识别任务可能存在类别不平衡，F1-score 和 AUC 比单独的 Accuracy 更重要。在二分类设置中，压力状态被视为正类。
+本文报告 Accuracy、F1-score 和 AUC，并将压力状态视为正类。
 
 \subsection{对比实验}
 
-主对比实验采用统一协议设置。在输入形式允许的情况下，所有对比方法均使用同一输入来源、同一 subject-independent 划分、同一片段构造方式和同一评价代码。统一协议下的对比方法用于回答一个更具体的问题：当输入都限制为人脸 RGB 视频时，多区域时序表示和注意力融合是否真正有效。本文的对比方法从简单颜色序列基线逐步扩展到视频时序模型和 rPPG 相关模型。其中，全脸 RGB、单区域 RGB 和多区域固定融合为本文构造的输入与融合策略基线；传统 rPPG、视频时序模型和 rPPG backbone 则参考已有方法或已有网络结构实现。
+在输入形式允许的情况下，所有方法使用同一输入来源、跨被试划分、片段构造方式和评价代码。全脸 RGB、单区域 RGB 和多区域固定融合为本文构造的基线；传统 rPPG、视频时序模型和 rPPG backbone 参考已有方法或网络结构实现。
 \begin{itemize}
     \item 全脸 RGB 时序网络：将五个区域序列先平均为一个全脸级 RGB 序列，再进行时序编码。
     \item 单区域 RGB 时序网络：分别使用额头、左脸颊、右脸颊、鼻部和下巴区域，用于观察不同面部区域的识别差异。
@@ -217,7 +192,7 @@
 \end{itemize}
 
 \begin{table}
-\caption{UBFC-Phys subject-independent 统一协议下的对比实验。ACC 表示准确率，AUC 表示受试者工作特征曲线下面积，RGB 表示红绿蓝颜色通道。所有模型均只使用人脸 RGB 视频，并采用相同片段长度、相同训练/验证/测试划分和相同评价代码。所有指标均以百分比（\%）报告。}
+\caption{UBFC-Phys subject-independent 统一协议下的对比实验。所有指标均以百分比（\%）报告。}
 \label{tab:main_results_zh}
 \centering
 \small
@@ -244,23 +219,23 @@ RT-MRCPNet & 五个 ROI RGB 序列，注意力融合 & \textbf{88.42} & \textbf{
 
 \begin{figure}
 \centering
-\IfFileExists{f3.eps}{%
-\includegraphics[width=0.92\textwidth,height=0.18\textheight,keepaspectratio]{f3.eps}%
+\IfFileExists{fig3_attention_reliability.eps}{%
+\includegraphics[width=0.92\textwidth,height=0.18\textheight,keepaspectratio]{fig3_attention_reliability.eps}%
 }{%
-\figplaceholder{图 3 量化实验可视化}{展示 RT-MRCPNet 与代表性基线的 ROC 曲线，并给出 RT-MRCPNet 在 subject-independent 测试集上的混淆矩阵。}%
+\figplaceholder{图 3 注意力可靠性可视化}{展示代表性片段中的注意力权重分布，用于分析模型如何降低不稳定时间位置和低质量区域的影响。}%
 }
-\caption{Subject-independent 评估的量化可视化。该图展示本文方法与代表性基线的 ROC 曲线，以及 RT-MRCPNet 的混淆矩阵，从而配合表~\ref{tab:main_results_zh} 中的数值结果，直观呈现分类边界和错误分布。}
-\label{fig:quantitative_visualization_zh}
+\caption{注意力可靠性可视化。}
+\label{fig:attention_reliability_zh}
 \end{figure}
 
-表~\ref{tab:main_results_zh} 和图~\ref{fig:quantitative_visualization_zh} 表明，RT-MRCPNet 在 RGB 序列、传统 rPPG 特征和轻量视频基线中取得最佳结果。单区域结果中，左右脸颊优于鼻部和下巴，说明不同面部区域的信号质量和判别贡献并不均匀；全脸平均 RGB 序列会把稳定区域与易受说话、反光或局部遮挡影响的区域混合在一起，因此难以充分利用局部颜色动态。RT-MRCPNet 将多个区域作为独立观测源保留下来，并进一步优于多区域固定融合，说明性能提升不只是来自使用更多 ROI，也来自对时间位置和面部区域的自适应选择。固定拼接或平均融合默认所有区域、所有时间位置同等可靠，而压力视频中常见的眨眼、转头、说话和光照变化具有明显的局部性和短时性；时间注意力可以在每个区域内部突出更稳定或更有判别力的片段，区域注意力则可以根据当前视频片段调整不同面部区域的贡献，从而降低低质量区域和受扰动时间片段对最终表示的影响。传统 rPPG 特征方法和已有 rPPG backbone 的目标通常偏向恢复心率、心率变异性或脉搏波形，而压力分类不一定只由一条全局、干净的生理波形决定；RT-MRCPNet 不将视频过早压缩为单一全局 rPPG 信号，也不直接训练较重的完整视频模型，而是在紧凑区域颜色序列上进行端到端判别学习，因此更适合 subject-independent 的小规模压力识别设置。
+表~\ref{tab:main_results_zh} 和图~\ref{fig:attention_reliability_zh} 表明，RT-MRCPNet 在 RGB 序列、传统 rPPG 特征和轻量视频基线中取得最佳结果。单区域结果中，左右脸颊优于鼻部和下巴，说明区域信号质量并不均匀。全脸平均会混合稳定区域和受说话、反光或遮挡影响的区域，多区域固定融合也默认所有区域同等可靠。RT-MRCPNet 保留多区域独立观测，并通过时间注意力和区域注意力自适应选择可靠片段和面部区域，避免过早压缩为单一全局 rPPG 信号，也避免训练较重的完整视频模型，因此更适合 subject-independent 小规模压力识别。
 
 \subsection{消融实验}
 
-消融实验进一步拆解本文模型，并采用与表~\ref{tab:main_results_zh} 相同的协议。与主对比实验不同，主对比实验改变的是输入表示或融合策略；消融实验则从 RT-MRCPNet 内部移除具体注意力模块，用于检验每个组件是否对最终分类有贡献。表~\ref{tab:ablation_zh} 报告了不同注意力配置下的消融结果。
+消融实验采用与表~\ref{tab:main_results_zh} 相同的协议，并从 RT-MRCPNet 中移除具体注意力模块。
 
 \begin{table}
-\caption{RT-MRCPNet 消融实验。ACC 表示准确率，AUC 表示受试者工作特征曲线下面积，所有指标均以百分比（\%）报告。}
+\caption{RT-MRCPNet 消融实验。所有指标均以百分比（\%）报告。}
 \label{tab:ablation_zh}
 \centering
 \begin{tabular}{lccc}
@@ -275,40 +250,40 @@ RT-MRCPNet & 五个 ROI RGB 序列，注意力融合 & \textbf{88.42} & \textbf{
 \end{tabular}
 \end{table}
 
-消融结果表明两个注意力阶段具有互补作用。无注意力模型退化为固定多区域融合，只能对所有时间位置和所有区域采用相同的聚合策略，因此难以处理片段内短时扰动和区域间质量差异。仅加入时间注意力后，模型能够在每个区域内部弱化眨眼、转头或光照突变等不稳定时间位置，所以相较无注意力版本有明显提升；仅加入区域注意力后，模型能够根据当前片段提高更可靠面部区域的权重，因而同样优于固定融合。完整 RT-MRCPNet 同时建模区域内部的时间可靠性和区域之间的判别贡献，取得最佳结果，说明压力相关证据既具有时间选择性，也具有空间区域差异。图~\ref{fig:attention_visualization_zh} 进一步展示了区域注意力和时间注意力的可视化结果，用于检查模型是否关注合理区域并抑制不稳定片段。
+消融结果表明两个注意力阶段具有互补作用。无注意力模型退化为固定融合，难以处理短时扰动和区域质量差异；时间注意力可以弱化每个 ROI 内的不稳定时刻，区域注意力可以提高可靠面部区域的贡献。完整 RT-MRCPNet 取得最佳结果，说明压力相关证据同时具有时间选择性和区域差异。图~\ref{fig:region_signal_diversity_zh} 进一步展示了区域颜色序列差异。
 
 \begin{figure}
 \centering
-\IfFileExists{f4.eps}{%
-\includegraphics[width=0.92\textwidth,height=0.18\textheight,keepaspectratio]{f4.eps}%
+\IfFileExists{fig4_region_signal_diversity.eps}{%
+\includegraphics[width=0.92\textwidth,height=0.18\textheight,keepaspectratio]{fig4_region_signal_diversity.eps}%
 }{%
-\figplaceholder{图 4 注意力可解释性可视化}{展示五个面部 ROI 上的区域注意力权重，并给出代表性压力/非压力片段的时间注意力曲线。}%
+\figplaceholder{图 4 区域信号差异可视化}{展示不同面部 ROI 的颜色序列差异，用于说明各区域信号质量和判别贡献并不相同。}%
 }
-\caption{注意力可解释性可视化。该图用于展示五个面部区域上的区域注意力，以及代表性压力和非压力片段的时间注意力曲线，从而检查模型是否关注生理上合理的区域，并抑制不稳定时间片段。}
-\label{fig:attention_visualization_zh}
+\caption{区域信号差异可视化。}
+\label{fig:region_signal_diversity_zh}
 \end{figure}
 
 \subsection{复杂度分析}
 
-RT-MRCPNet 使用紧凑的区域 RGB 序列，而不是完整人脸视频帧。对于长度为 $T$、空间分辨率为 $H \times W$ 的人脸视频，完整帧模型的输入规模为
+对于长度为 $T$、分辨率为 $H \times W$ 的人脸视频，完整帧模型的输入规模为
 \begin{equation}
     \mathcal{O}(T H W C),
 \end{equation}
-其中 $C$ 表示颜色通道数。本文方法在预处理后只保留 $K$ 个区域的颜色均值序列，输入规模变为
+预处理后，RT-MRCPNet 只保留 $K$ 个区域的颜色均值序列：
 \begin{equation}
     \mathcal{O}(K T C).
 \end{equation}
-由于 $K \ll H W$，区域颜色表示在进入神经网络前已经显著降低了空间冗余。以本文设置为例，$K=5$、$C=3$，而完整人脸帧包含 $128 \times 128$ 个空间位置，因此输入规模从像素级时空张量降为少量区域颜色轨迹。
+由于 $K \ll H W$，该表示在进入神经网络前显著降低了空间冗余。
 
-从模型计算看，设共享一维时序编码器的隐藏维度为 $D$，卷积核大小为 $q$，编码层数为 $L$。由于所有区域共享同一个编码器，时序编码的主要复杂度可近似写为
+设隐藏维度为 $D$，卷积核大小为 $q$，编码层数为 $L$，时序编码主要复杂度为
 \begin{equation}
     \mathcal{O}(B K L T q D^2),
 \end{equation}
-其中 $B$ 为 batch size。时间注意力需要为每个区域和每个时间位置计算标量分数，其复杂度为 $\mathcal{O}(B K T D)$；区域注意力需要对 $K$ 个区域级表示进行打分和加权，复杂度为 $\mathcal{O}(B K D)$。因此，两个注意力模块的额外开销为
+其中 $B$ 为 batch size。时间注意力和区域注意力的额外开销为
 \begin{equation}
     \mathcal{O}(B K T D + B K D),
 \end{equation}
-相对于时序编码器和完整帧视频模型都较小。RT-MRCPNet 的计算量主要随区域数 $K$ 和片段长度 $T$ 线性增长，而不是随图像空间尺寸 $H W$ 增长，这也是其能够保持较低 FLOPs 和较快推理速度的原因。表~\ref{tab:complexity_zh} 报告了代表性方法的参数量、FLOPs 和推理时间。
+相对于完整帧视频建模较小。RT-MRCPNet 的计算量主要随 $K$ 和 $T$ 增长，而不是随图像面积 $H W$ 增长。表~\ref{tab:complexity_zh} 报告了实际复杂度。
 
 \begin{table}
 \caption{模型复杂度对比。FLOPs 表示浮点运算量。}
@@ -328,7 +303,7 @@ RT-MRCPNet & 0.94M & 0.25G & 2.38 ms \\
 
 \section{结论}
 
-本文提出 RT-MRCPNet，一种用于非接触式压力识别的轻量级区域-时间注意力多区域颜色脉动网络。该方法将人脸视频转化为紧凑的多区域 RGB 时序序列，使用共享时序编码器建模区域内部颜色动态，并通过时间注意力和区域注意力自适应聚合有效信息。在 subject-independent 协议下，RT-MRCPNet 达到 88.42\% ACC、88.15\% F1-score 和 91.54\% AUC，优于 RGB 序列基线、传统 rPPG 特征基线和轻量视频基线。消融实验和复杂度分析表明，时间注意力与区域注意力能够带来互补增益，同时保持较低计算开销。当前方法仍采用固定矩形 ROI 和二分类任务标签；未来工作将探索基于 landmarks 或三维人脸网格的区域定义、更细粒度的压力标注，以及与音频、眼动或接触式生理信号的多模态融合。
+本文提出 RT-MRCPNet，一种用于非接触式压力识别的轻量级区域-时间注意力网络。该方法将人脸视频转化为多区域 RGB 时序序列，使用共享编码器建模局部颜色动态，并通过时间注意力和区域注意力聚合信息。在 subject-independent 协议下，RT-MRCPNet 达到 88.42\% ACC、88.15\% F1-score 和 91.54\% AUC。消融实验和复杂度分析表明，两个注意力阶段能够带来互补增益并保持较低计算开销。未来工作将探索自适应 ROI 定义、更细粒度压力标签和多模态融合。
 
 \begingroup
 \let\small\tiny
