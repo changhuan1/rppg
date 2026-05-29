@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: rt_mrcpnet_en.aux
 The style file: splncs04_unsrt.bst
 Database file #1: references.bib
-You've used 25 entries,
+You've used 28 entries,
             2850 wiz_defined-function locations,
-            754 strings with 10920 characters,
-and the built_in function-call counts, 14410 in all, are:
-= -- 1165
-> -- 373
-< -- 35
-+ -- 141
-- -- 116
-* -- 840
-:= -- 1583
-add.period$ -- 50
-call.type$ -- 25
-change.case$ -- 47
+            770 strings with 11700 characters,
+and the built_in function-call counts, 16320 in all, are:
+= -- 1321
+> -- 427
+< -- 39
++ -- 161
+- -- 133
+* -- 948
+:= -- 1790
+add.period$ -- 56
+call.type$ -- 28
+change.case$ -- 54
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 1448
-empty$ -- 1380
-format.name$ -- 141
-if$ -- 3352
+cite$ -- 28
+duplicate$ -- 1634
+empty$ -- 1560
+format.name$ -- 161
+if$ -- 3802
 int.to.chr$ -- 0
-int.to.str$ -- 25
-missing$ -- 303
-newline$ -- 81
-num.names$ -- 25
-pop$ -- 484
+int.to.str$ -- 28
+missing$ -- 342
+newline$ -- 90
+num.names$ -- 28
+pop$ -- 548
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 464
+skip$ -- 531
 stack$ -- 0
-substring$ -- 943
-swap$ -- 904
-text.length$ -- 35
+substring$ -- 1077
+swap$ -- 1021
+text.length$ -- 39
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 114
-width$ -- 27
-write$ -- 283
+while$ -- 128
+width$ -- 30
+write$ -- 315

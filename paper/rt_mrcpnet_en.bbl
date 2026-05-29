@@ -133,6 +133,23 @@ Pilz, C.S., Zaunseder, S., Krajewski, J., Blazek, V.: Local group invariance
   IEEE Conference on Computer Vision and Pattern Recognition Workshops pp.
   1254--1262 (2018)
 
+\bibitem{yu2022physformer}
+Yu, Z., Shen, Y., Shi, J., Zhao, H., Torr, P.H.S., Zhao, G.: Physformer: Facial
+  video-based physiological measurement with temporal difference transformer.
+  In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition. pp. 4186--4196 (2022)
+
+\bibitem{zou2025rhythmformer}
+Zou, B., Guo, Z., Chen, J., Ma, H.: Rhythmformer: Extracting patterned remote
+  photoplethysmography signals based on periodic sparse attention. Pattern
+  Recognition  \textbf{164},  111511 (2025). \doi{10.1016/j.patcog.2025.111511}
+
+\bibitem{zhao2024mar}
+Zhao, P., Sun, Q., Tian, X., Yang, Y., Tao, S., Cheng, J., Chen, J.: Toward
+  motion robustness: A masked attention regularization framework in remote
+  photoplethysmography. In: Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition Workshops. pp. 7829--7838 (2024)
+
 \bibitem{ziaratnia2024cctlstm}
 Ziaratnia, S.M., Demirel, H., Farah, K.: Multimodal deep learning for remote
   stress estimation using {CCT-LSTM}. In: Proceedings of the IEEE/CVF Winter

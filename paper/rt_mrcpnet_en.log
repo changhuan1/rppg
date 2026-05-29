@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.27)  27 MAY 2026 19:28
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.5.27)  29 MAY 2026 21:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -14,28 +14,28 @@ Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (d:/texlive/2026/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count275
-\c@section=\count276
-\c@subsection=\count277
-\c@subsubsection=\count278
-\c@paragraph=\count279
-\c@subparagraph=\count280
-\c@figure=\count281
-\c@table=\count282
+\c@part=\count271
+\c@section=\count272
+\c@subsection=\count273
+\c@subsubsection=\count274
+\c@paragraph=\count275
+\c@subparagraph=\count276
+\c@figure=\count277
+\c@table=\count278
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
 )
 (d:/texlive/2026/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2025/10/21 v2.0b multicolumn formatting (FMi)
-\c@tracingmulticols=\count283
+\c@tracingmulticols=\count279
 \mult@box=\box53
 \multicol@leftmargin=\dimen149
-\c@unbalance=\count284
-\c@collectmore=\count285
-\doublecol@number=\count286
-\multicoltolerance=\count287
-\multicolpretolerance=\count288
+\c@unbalance=\count280
+\c@collectmore=\count281
+\doublecol@number=\count282
+\multicoltolerance=\count283
+\multicolpretolerance=\count284
 \full@width=\dimen150
 \page@free=\dimen151
 \premulticols=\dimen152
@@ -86,21 +86,21 @@ Package: multicol 2025/10/21 v2.0b multicolumn formatting (FMi)
 \@tempa=\box94
 \@tempa=\box95
 \@tempa=\box96
-\c@minrows=\count289
-\c@columnbadness=\count290
-\c@finalcolumnbadness=\count291
+\c@minrows=\count285
+\c@columnbadness=\count286
+\c@finalcolumnbadness=\count287
 \last@try=\dimen155
 \multicolovershoot=\dimen156
 \multicolundershoot=\dimen157
 \mult@nat@firstbox=\box97
 \colbreak@box=\box98
-\mc@col@check@num=\count292
-\g__mc_curr_col_int=\count293
+\mc@col@check@num=\count288
+\g__mc_curr_col_int=\count289
 )
 (d:/texlive/2026/texmf-dist/tex/latex/oberdiek/aliascnt.sty
 Package: aliascnt 2018/09/07 v1.5 Alias counters (HO)
 )
-\c@chapter=\count294
+\c@chapter=\count290
 LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 362.
 LaTeX Font Info:    Redeclaring math symbol \Delta on input line 363.
 LaTeX Font Info:    Redeclaring math symbol \Theta on input line 364.
@@ -122,11 +122,11 @@ LaTeX Font Info:    Redeclaring math symbol \Omega on input line 372.
 \tocparanum=\dimen165
 \tocparatotal=\dimen166
 \tocsubparanum=\dimen167
-\@tempcntc=\count295
+\@tempcntc=\count291
 \fnindent=\dimen168
-\c@@inst=\count296
-\c@@auth=\count297
-\c@auco=\count298
+\c@@inst=\count292
+\c@@auth=\count293
+\c@auco=\count294
 \instindent=\dimen169
 \authrun=\box99
 \authorrunning=\toks17
@@ -134,21 +134,21 @@ LaTeX Font Info:    Redeclaring math symbol \Omega on input line 372.
 \titrun=\box100
 \titlerunning=\toks19
 \toctitle=\toks20
-\c@theorem=\count299
-\c@case=\count300
-\c@conjecture=\count301
-\c@corollary=\count302
-\c@definition=\count303
-\c@example=\count304
-\c@exercise=\count305
-\c@lemma=\count306
-\c@note=\count307
-\c@problem=\count308
-\c@property=\count309
-\c@proposition=\count310
-\c@question=\count311
-\c@solution=\count312
-\c@remark=\count313
+\c@theorem=\count295
+\c@case=\count296
+\c@conjecture=\count297
+\c@corollary=\count298
+\c@definition=\count299
+\c@example=\count300
+\c@exercise=\count301
+\c@lemma=\count302
+\c@note=\count303
+\c@problem=\count304
+\c@property=\count305
+\c@proposition=\count306
+\c@question=\count307
+\c@solution=\count308
+\c@remark=\count309
 \headlineindent=\dimen170
 )
 (d:/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -167,10 +167,10 @@ Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 (d:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 106.
+Package graphics Info: Driver file: xetex.def on input line 106.
 
-(d:/texlive/2026/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+(d:/texlive/2026/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2025/11/01 v5.0p Graphics/color driver for xetex
 ))
 \Gin@req@height=\dimen171
 \Gin@req@width=\dimen172
@@ -195,14 +195,14 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (d:/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count314
+\inf@bad=\count310
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count315
-\leftroot@=\count316
+\uproot@=\count311
+\leftroot@=\count312
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count317
-\DOTSCASE@=\count318
+\classnum@=\count313
+\DOTSCASE@=\count314
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -215,20 +215,20 @@ LaTeX Info: Redefining \Bigg on input line 724.
 \big@size=\dimen175
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count319
+\macc@depth=\count315
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count320
+\c@MaxMatrixCols=\count316
 \dotsspace@=\muskip17
-\c@parentequation=\count321
-\dspbrk@lvl=\count322
+\c@parentequation=\count317
+\dspbrk@lvl=\count318
 \tag@help=\toks23
-\row@=\count323
-\column@=\count324
-\maxfields@=\count325
+\row@=\count319
+\column@=\count320
+\maxfields@=\count321
 \andhelp@=\toks24
 \eqnshift@=\dimen176
 \alignsep@=\dimen177
@@ -266,12 +266,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen189
 \cmidrulekern=\dimen190
 \defaultaddspace=\dimen191
-\@cmidla=\count326
-\@cmidlb=\count327
+\@cmidla=\count322
+\@cmidlb=\count323
 \@aboverulesep=\dimen192
 \@belowrulesep=\dimen193
-\@thisruleclass=\count328
-\@lastruleclass=\count329
+\@thisruleclass=\count324
+\@lastruleclass=\count325
 \@thisrulewidth=\dimen194
 )
 (d:/texlive/2026/texmf-dist/tex/latex/tools/array.sty
@@ -288,276 +288,151 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(d:/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count330
+(d:/texlive/2026/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+(d:/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
+\g__graphics_track_int=\count326
+\g__pdfannot_backend_int=\count327
+\g__pdfannot_backend_link_int=\count328
 )
 (./rt_mrcpnet_en.aux)
 \openout1 = `rt_mrcpnet_en.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
 
-(d:/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count331
-\scratchdimen=\dimen197
-\scratchbox=\box105
-\nofMPsegments=\count332
-\nofMParguments=\count333
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count334
-\MPscratchDim=\dimen198
-\MPnumerator=\count335
-\makeMPintoPDFobject=\count336
-\everyMPtoPDFconversion=\toks29
-) (d:/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(d:/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
-
-
-(d:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (d:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
 
 
 (d:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{d:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{d:/texlive/2026/
-texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2] [3]
-Package epstopdf Info: Source file: <f2.eps>
-(epstopdf)                    date: 2026-05-26 15:58:19
-(epstopdf)                    size: 725136 bytes
-(epstopdf)             Output file: <f2-eps-converted-to.pdf>
-(epstopdf)                    date: 2026-05-26 15:58:19
-(epstopdf)                    size: 151352 bytes
-(epstopdf)             Command: <repstopdf --outfile=f2-eps-converted-to.pdf f2
-.eps>
-(epstopdf)             \includegraphics on input line 77.
-Package epstopdf Info: Output file is already uptodate.
-<f2-eps-converted-to.pdf, id=18, 890.32625pt x 540.0175pt>
-File: f2-eps-converted-to.pdf Graphic file (type pdf)
-<use f2-eps-converted-to.pdf>
-Package pdftex.def Info: f2-eps-converted-to.pdf  used on input line 77.
-(pdftex.def)             Requested size: 340.17958pt x 206.32942pt.
- [4 <./f2-eps-converted-to.pdf>]
-[5]
-Package epstopdf Info: Source file: <f1.eps>
-(epstopdf)                    date: 2026-05-26 15:58:19
-(epstopdf)                    size: 10294574 bytes
-(epstopdf)             Output file: <f1-eps-converted-to.pdf>
-(epstopdf)                    date: 2026-05-26 15:58:19
-(epstopdf)                    size: 949432 bytes
-(epstopdf)             Command: <repstopdf --outfile=f1-eps-converted-to.pdf f1
-.eps>
-(epstopdf)             \includegraphics on input line 149.
-Package epstopdf Info: Output file is already uptodate.
-<f1-eps-converted-to.pdf, id=43, 3507.1025pt x 976.64874pt>
-File: f1-eps-converted-to.pdf Graphic file (type pdf)
-<use f1-eps-converted-to.pdf>
-Package pdftex.def Info: f1-eps-converted-to.pdf  used on input line 149.
-(pdftex.def)             Requested size: 340.17958pt x 94.71991pt.
- [6 <./f1-eps-converted-to.pdf>] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
-[]|\OT1/cmr/m/n/9 Left-cheek-only tem-po-ral
+]
+Underfull \vbox (badness 5105) has occurred while \output is active []
+
+ [2]
+[3] [4]
+File: f1.eps Graphic file (type eps)
+<f1.eps>
+ [5] [6]
+File: f2.eps Graphic file (type eps)
+<f2.eps>
+ [7] [8] [9]
+Underfull \hbox (badness 3590) in paragraph at lines 216--216
+[]|\TU/lmr/m/n/9 Whole-face averaged RGB
  []
 
 
-Underfull \hbox (badness 7504) in paragraph at lines 207--207
-[]|\OT1/cmr/m/n/9 Right-cheek-only tem-po-ral
+Underfull \hbox (badness 10000) in paragraph at lines 217--217
+[]|\TU/lmr/m/n/9 Forehead single-region
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 211--211
-[]|\OT1/cmr/m/n/9 rPPG fea-tures + sup-port
+Underfull \hbox (badness 10000) in paragraph at lines 218--218
+[]|\TU/lmr/m/n/9 Left-cheek single-region
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 212--212
-[]|\OT1/cmr/m/n/9 rPPG fea-tures + ran-dom
+Underfull \hbox (badness 1590) in paragraph at lines 221--221
+[]|\TU/lmr/m/n/9 Chin single-region tem-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--215
-[]|\OT1/cmr/m/n/9 PhysNet/EfficientPhys +
- []
-
-Package epstopdf Info: Source file: <fig3_attention_reliability.eps>
-(epstopdf)                    date: 2026-05-27 19:09:16
-(epstopdf)                    size: 54255 bytes
-(epstopdf)             Output file: <fig3_attention_reliability-eps-converted-t
-o.pdf>
-(epstopdf)                    date: 2026-05-27 19:14:07
-(epstopdf)                    size: 21423 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig3_attention_reliability
--eps-converted-to.pdf fig3_attention_reliability.eps>
-(epstopdf)             \includegraphics on input line 227.
-Package epstopdf Info: Output file is already uptodate.
-<fig3_attention_reliability-eps-converted-to.pdf, id=99, 860.21375pt x 353.32pt
->
-File: fig3_attention_reliability-eps-converted-to.pdf Graphic file (type pdf)
-<use fig3_attention_reliability-eps-converted-to.pdf>
-Package pdftex.def Info: fig3_attention_reliability-eps-converted-to.pdf  used 
-on input line 227.
-(pdftex.def)             Requested size: 240.6482pt x 98.84267pt.
-[8]
-Package epstopdf Info: Source file: <fig4_region_signal_diversity.eps>
-(epstopdf)                    date: 2026-05-27 19:09:22
-(epstopdf)                    size: 130446 bytes
-(epstopdf)             Output file: <fig4_region_signal_diversity-eps-converted
--to.pdf>
-(epstopdf)                    date: 2026-05-27 19:14:08
-(epstopdf)                    size: 32211 bytes
-(epstopdf)             Command: <repstopdf --outfile=fig4_region_signal_diversi
-ty-eps-converted-to.pdf fig4_region_signal_diversity.eps>
-(epstopdf)             \includegraphics on input line 262.
-Package epstopdf Info: Output file is already uptodate.
-<fig4_region_signal_diversity-eps-converted-to.pdf, id=103, 1078.0275pt x 570.1
-3pt>
-File: fig4_region_signal_diversity-eps-converted-to.pdf Graphic file (type pdf)
-
-<use fig4_region_signal_diversity-eps-converted-to.pdf>
-Package pdftex.def Info: fig4_region_signal_diversity-eps-converted-to.pdf  use
-d on input line 262.
-(pdftex.def)             Requested size: 186.8811pt x 98.8347pt.
- [9 <./fig3_attention_reliability-eps-converted-to.pdf>] [10 <./fig4_region_sig
-nal_diversity-eps-converted-to.pdf>] (./rt_mrcpnet_en.bbl
-Underfull \hbox (badness 2980) in paragraph at lines 19--23
-[]\OT1/cmr/m/n/9 Nikolaiev, S., Te-lenyk, S., Ty-moshenko, Y.: Non-contact vide
-o-based re-
+Underfull \hbox (badness 1394) in paragraph at lines 222--222
+[]|\TU/lmr/m/n/9 Five ROI RGB sequences,
  []
 
 
-Underfull \hbox (badness 3417) in paragraph at lines 19--23
-\OT1/cmr/m/n/9 mote pho-to-plethys-mog-ra-phy for hu-man stress de-tec-tion. Jo
-ur-nal of Au-
+Underfull \hbox (badness 10000) in paragraph at lines 223--223
+[]|\TU/lmr/m/n/9 Heart-rate/HRV hand-
  []
 
 
-Underfull \hbox (badness 3098) in paragraph at lines 19--23
-\OT1/cmr/m/n/9 toma-tion, Mo-bile Robotics and In-tel-li-gent Sys-tems \OT1/cmr
-/bx/n/9 14\OT1/cmr/m/n/9 (2), 63--73 (2020).
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
+[]|\TU/lmr/m/n/9 Heart-rate/HRV hand-
+ []
+
+[10]
+File: f3.eps Graphic file (type eps)
+<f3.eps>
+File: f4.eps Graphic file (type eps)
+<f4.eps>
+ [11] [12] [13] (./rt_mrcpnet_en.bbl
+Underfull \hbox (badness 1231) in paragraph at lines 71--75
+[]\TU/lmr/m/n/5 Xiong, J., Ou, W., Liu, Z., Gou, J., Xiao, W., Liu, H.: Graphph
+ys: Facial video-based physiologi-
  []
 
 
-Underfull \hbox (badness 1087) in paragraph at lines 25--29
-[]\OT1/cmr/m/n/9 Meziati Sabour, R., Benezeth, Y., De Oliveira, P., Chappe, J.,
- Yang, F.:
+Underfull \hbox (badness 7685) in paragraph at lines 88--91
+[]\TU/lmr/m/n/5 Healey, J.A., Picard, R.W.: Detecting stress during real-world 
+driving tasks using physiolog-
  []
 
 
-Underfull \hbox (badness 1320) in paragraph at lines 25--29
-\OT1/cmr/m/n/9 UBFC-Phys: A mul-ti-modal database for psy-chophys-i-o-log-i-cal
- stud-ies of so-
+Underfull \hbox (badness 10000) in paragraph at lines 88--91
+\TU/lmr/m/n/5 ical sensors. IEEE Transactions on Intelligent Transportation Sys
+tems \TU/lmr/bx/n/5 6\TU/lmr/m/n/5 (2), 156–166 (2005).
  []
 
 
-Underfull \hbox (badness 7504) in paragraph at lines 71--75
-[]\OT1/cmr/m/n/9 Xiong, J., Ou, W., Liu, Z., Gou, J., Xiao, W., Liu, H.: Graph-
-
+Underfull \hbox (badness 10000) in paragraph at lines 116--119
+[]\TU/lmr/m/n/5 Braun, B., McDuff, D., Baltrusaitis, T., Holz, C.: Video-based 
+sympathetic arousal assess-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--75
-\OT1/cmr/m/n/9 phys: Fa-cial video-based phys-i-o-log-i-cal mea-sure-ment with 
-graph neu-
+Underfull \hbox (badness 3386) in paragraph at lines 116--119
+\TU/lmr/m/n/5 ment via peripheral blood flow estimation. Biomedical Optics Expr
+ess \TU/lmr/bx/n/5 14\TU/lmr/m/n/5 (12), 6607–6628 (2023).
  []
 
 
-Underfull \hbox (badness 3439) in paragraph at lines 71--75
-\OT1/cmr/m/n/9 ral net-work. Com-put-ers and Elec-tri-cal En-gi-neer-ing \OT1/c
-mr/bx/n/9 113\OT1/cmr/m/n/9 , 109022 (2024).
- []
-
-[11]
-Underfull \hbox (badness 6364) in paragraph at lines 82--86
-[]\OT1/cmr/m/n/9 Xu, J., Song, C., Yue, Z., Ding, S.: Fa-cial video-based non-c
-ontact
+Underfull \hbox (badness 3872) in paragraph at lines 143--146
+[]\TU/lmr/m/n/5 Zou, B., Guo, Z., Chen, J., Ma, H.: Rhythmformer: Extracting pa
+tterned remote photoplethys-
  []
 
 
-Underfull \hbox (badness 2027) in paragraph at lines 82--86
-\OT1/cmr/m/n/9 stress recog-ni-tion uti-liz-ing multi-task learn-ing with peak 
-at-ten-tion. IEEE
+Underfull \hbox (badness 5460) in paragraph at lines 143--146
+\TU/lmr/m/n/5 mography signals based on periodic sparse attention. Pattern Reco
+gnition \TU/lmr/bx/n/5 164\TU/lmr/m/n/5 , 111511 (2025).
  []
 
-
-Underfull \hbox (badness 3536) in paragraph at lines 82--86
-\OT1/cmr/m/n/9 Jour-nal of Biomed-i-cal and Health In-for-mat-ics \OT1/cmr/bx/n
-/9 28\OT1/cmr/m/n/9 (9), 5335--5346 (2024).
- []
-
-
-Underfull \hbox (badness 5403) in paragraph at lines 99--102
-[]\OT1/cmr/m/n/9 Schmidt, P., Reiss, A., Duerichen, R., Van Laer-hoven, K.: Wea
-rable-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 99--102
-\OT1/cmr/m/n/9 based af-fect recog-ni-tion: A re-view. Sen-sors \OT1/cmr/bx/n/9
- 19\OT1/cmr/m/n/9 (19),  4079 (2019).
- []
-
-
-Underfull \hbox (badness 2922) in paragraph at lines 121--124
-\OT1/cmr/m/n/9 IEEE Trans-ac-tions on Biomed-i-cal En-gi-neer-ing \OT1/cmr/bx/n
-/9 60\OT1/cmr/m/n/9 (10), 2878--2886 (2013).
- []
-
-) [12] (./rt_mrcpnet_en.aux)
+) [14] (./rt_mrcpnet_en.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3351 strings out of 467525
- 48259 string characters out of 5423209
- 468179 words of memory out of 5000000
- 32234 multiletter control sequences out of 15000+600000
- 635616 words of font info for 70 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 57i,10n,65p,1554b,359s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<d:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/tex
-live/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/texlive/2026
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><d:/texlive/2026/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/texlive/2026/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2026/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi5.pfb><d:/texlive/2026/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi7.pfb><d:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
-.pfb><d:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/te
-xlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><d:/texlive/2026/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/texlive/2026/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/texlive/2026/texmf-dist/fonts/ty
-pe1/public/amsfonts/symbols/msbm10.pfb><d:/texlive/2026/texmf-dist/fonts/type1/
-public/cm-super/sfrm0900.pfb>
-Output written on rt_mrcpnet_en.pdf (12 pages, 1346755 bytes).
-PDF statistics:
- 288 PDF objects out of 1000 (max. 8388607)
- 117 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3012 strings out of 468168
+ 43326 string characters out of 5436524
+ 469152 words of memory out of 5000000
+ 31701 multiletter control sequences out of 15000+600000
+ 634149 words of font info for 75 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 57i,10n,65p,1670b,285s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
+Output written on rt_mrcpnet_en.pdf (14 pages).

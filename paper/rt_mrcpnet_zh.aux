@@ -1,27 +1,37 @@
 \relax 
 \citation{mcduff2014remote,benezeth2018remotehrv,nikolaiev2020noncontact}
-\citation{sabour2021ubfcphys,chaptoukaev2023stressid,heimerl2024fordigitstress}
+\citation{sabour2021ubfcphys}
+\citation{chaptoukaev2023stressid}
+\citation{heimerl2024fordigitstress}
 \@writefile{toc}{\contentsline {title}{面向非接触式压力识别的区域-时间注意力多区域颜色脉动网络}{1}{}\protected@file@percent }
 \@writefile{toc}{\authcount {1}}
 \@writefile{toc}{\contentsline {author}{匿名作者}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1}引言}{1}{}\protected@file@percent }
-\citation{chen2018deepphys,yu2019physnet,liu2020mttscan,liu2023efficientphys}
+\citation{chen2018deepphys}
+\citation{yu2019physnet}
+\citation{liu2020mttscan}
+\citation{liu2023efficientphys}
 \citation{mcduff2014remote,nikolaiev2020noncontact}
-\citation{zhao2020multiscale,xiong2023graphphys,bondarenko2025regions}
-\citation{chen2018deepphys,liu2020mttscan,xu2024mtasr}
+\citation{zhao2020multiscale}
+\citation{xiong2023graphphys}
+\citation{bondarenko2025regions}
+\citation{chen2018deepphys}
+\citation{liu2020mttscan}
+\citation{xu2024mtasr}
 \citation{healey2005drivingstress,schmidt2018wesad,schmidt2019wearableaffectreview}
 \citation{schmidt2018wesad,bota2022empathicschool}
 \citation{sabour2021ubfcphys}
 \citation{chaptoukaev2023stressid}
 \citation{heimerl2024fordigitstress}
-\@writefile{toc}{\contentsline {section}{\numberline {2}相关工作}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}压力识别与多模态数据}{2}{}\protected@file@percent }
 \citation{mcduff2014remote}
 \citation{nikolaiev2020noncontact}
 \citation{benezeth2018remotehrv}
 \citation{xu2024mtasr}
 \citation{braun2024sympcam}
 \citation{braun2023sympathetic}
+\@writefile{toc}{\contentsline {section}{\numberline {2}相关工作}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}压力识别与多模态数据}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}非接触式压力识别与人脸颜色线索}{3}{}\protected@file@percent }
 \citation{dehaan2013chrom}
 \citation{wang2017pos}
 \citation{pilz2018lgi}
@@ -32,47 +42,50 @@
 \citation{zhao2020multiscale}
 \citation{bondarenko2025regions}
 \citation{xiong2023graphphys}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}非接触式压力识别与人脸颜色线索}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}多区域建模与注意力机制}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}方法}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}问题定义}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}多区域颜色脉动表示}{4}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 本文多区域颜色脉动表示使用的五个面部区域。}}{4}{}\protected@file@percent }
-\newlabel{fig:region_partition_zh}{{1}{4}{}{figure.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}区域时序编码器}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}时间注意力}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}区域注意力}{6}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces RT-MRCPNet 模型结构图。}}{7}{}\protected@file@percent }
-\newlabel{fig:overview_zh}{{2}{7}{}{figure.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}训练目标}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}实验}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}数据集与标签定义}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Subject-Independent 协议}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}实现细节}{7}{}\protected@file@percent }
-\citation{wang2017pos,dehaan2013chrom}
+\citation{chen2018deepphys,liu2020mttscan,xu2024mtasr}
+\citation{yu2022physformer}
+\citation{zou2025rhythmformer}
+\citation{zhao2024mar}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}多区域建模与注意力机制}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}方法}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}问题定义}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}多区域颜色脉动表示}{5}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 本文多区域颜色脉动表示使用的五个面部区域。归一化人脸被划分为额头、左脸颊、右脸颊、鼻部和下巴五个 ROI，每个区域进一步转换为 RGB 颜色时序序列。}}{6}{}\protected@file@percent }
+\newlabel{fig:region_partition_zh}{{1}{6}{}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}区域时序编码器}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}时间注意力}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}区域注意力}{7}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces RT-MRCPNet 模型结构图。人脸视频片段首先被转换为多区域 RGB 颜色时序序列，经共享时序编码器提取区域动态特征，再通过时间注意力和区域注意力完成自适应聚合，最终输出压力/非压力分类结果。}}{8}{}\protected@file@percent }
+\newlabel{fig:overview_zh}{{2}{8}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}训练目标}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}实验}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}数据集与标签定义}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Subject-Independent 协议}{8}{}\protected@file@percent }
+\citation{wang2017pos}
+\citation{dehaan2013chrom}
 \citation{ziaratnia2024cctlstm}
 \citation{tran2015c3d}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}实现细节}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}评价指标}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}对比实验}{9}{}\protected@file@percent }
 \citation{yu2019physnet}
-\citation{liu2023efficientphys}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}评价指标}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}对比实验}{8}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces UBFC-Phys subject-independent 统一协议下的对比实验。所有指标均以百分比（\%）报告。}}{9}{}\protected@file@percent }
-\newlabel{tab:main_results_zh}{{1}{9}{}{table.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 注意力可靠性可视化。}}{9}{}\protected@file@percent }
-\newlabel{fig:attention_reliability_zh}{{3}{9}{}{figure.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.6}消融实验}{10}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces RT-MRCPNet 消融实验。所有指标均以百分比（\%）报告。}}{10}{}\protected@file@percent }
-\newlabel{tab:ablation_zh}{{2}{10}{}{table.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 区域信号差异可视化。}}{10}{}\protected@file@percent }
-\newlabel{fig:region_signal_diversity_zh}{{4}{10}{}{figure.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}复杂度分析}{10}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces UBFC-Phys subject-independent 统一协议下的对比实验。ACC 表示准确率，AUC 表示受试者工作特征曲线下面积，RGB 表示红绿蓝颜色通道。所有模型均只使用人脸 RGB 视频，并采用相同片段长度、相同训练/验证/测试划分和相同评价代码。所有指标均以百分比（\%）报告。}}{11}{}\protected@file@percent }
+\newlabel{tab:main_results_zh}{{1}{11}{}{table.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 区域信号多样性可视化。该图展示不同面部区域的颜色脉动信号在幅值、形态和稳定性上的差异，说明压力相关线索具有明显的区域不均匀性。}}{11}{}\protected@file@percent }
+\newlabel{fig:region_signal_diversity_zh}{{3}{11}{}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 注意力可靠性可视化。该图展示 RT-MRCPNet 在代表性片段上的时间注意力和区域注意力分布，用于观察模型是否能够降低不稳定时间段或低质量区域的影响，并突出更可靠的判别线索。}}{12}{}\protected@file@percent }
+\newlabel{fig:attention_reliability_zh}{{4}{12}{}{figure.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces RT-MRCPNet 消融实验。ACC 表示准确率，AUC 表示受试者工作特征曲线下面积，所有指标均以百分比（\%）报告。}}{12}{}\protected@file@percent }
+\newlabel{tab:ablation_zh}{{2}{12}{}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}复杂度分析}{12}{}\protected@file@percent }
 \bibstyle{splncs04_unsrt}
 \bibdata{references}
 \bibcite{mcduff2014remote}{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 模型复杂度对比。推理时间表示每个片段的平均前向时间。}}{13}{}\protected@file@percent }
+\newlabel{tab:complexity_zh}{{3}{13}{}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}结论}{13}{}\protected@file@percent }
 \bibcite{benezeth2018remotehrv}{2}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 模型复杂度对比。FLOPs 表示浮点运算量。}}{11}{}\protected@file@percent }
-\newlabel{tab:complexity_zh}{{3}{11}{}{table.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}结论}{11}{}\protected@file@percent }
 \bibcite{nikolaiev2020noncontact}{3}
 \bibcite{sabour2021ubfcphys}{4}
 \bibcite{chaptoukaev2023stressid}{5}
@@ -94,6 +107,9 @@
 \bibcite{dehaan2013chrom}{21}
 \bibcite{wang2017pos}{22}
 \bibcite{pilz2018lgi}{23}
-\bibcite{ziaratnia2024cctlstm}{24}
-\bibcite{tran2015c3d}{25}
-\gdef \@abspage@last{13}
+\bibcite{yu2022physformer}{24}
+\bibcite{zou2025rhythmformer}{25}
+\bibcite{zhao2024mar}{26}
+\bibcite{ziaratnia2024cctlstm}{27}
+\bibcite{tran2015c3d}{28}
+\gdef \@abspage@last{15}
