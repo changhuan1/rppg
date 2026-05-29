@@ -64,7 +64,7 @@ Traditional rPPG methods such as CHROM~\cite{dehaan2013chrom}, POS~\cite{wang201
 
 Facial-region selection is critical to rPPG quality because local blood flow, skin texture, pose, illumination, and motion create different signal-to-noise ratios across ROIs. Multi-scale and multi-ROI methods can improve heart-rate estimation robustness~\cite{zhao2020multiscale}, and recent studies note that region selection remains an open problem rather than a solved preprocessing detail~\cite{bondarenko2025regions}. GraphPhys models relationships among facial regions with a graph neural network and emphasizes physiological consistency and complementarity across regions~\cite{xiong2023graphphys}. These studies support a basic premise: facial-region information should not be over-compressed early in the model.
 
-Attention mechanisms are also often used to suppress background or unreliable frames and emphasize informative waveform segments. Spatial attention can reduce the influence of background and non-skin areas, temporal attention can emphasize reliable frames or useful waveform segments, and channel attention can model relationships among color channels or feature dimensions~\cite{chen2018deepphys,liu2020mttscan,xu2024mtasr}. PhysFormer~\cite{yu2022physformer}, RhythmFormer~\cite{zou2025rhythmformer}, and Masked Attention Regularization~\cite{zhao2024mar} further show that attention can enhance remote physiological spatiotemporal representations. Existing attention designs, however, mostly serve full-video representation learning or remote physiological reconstruction. This work asks a more focused question: can compact regional color sequences, combined with two lightweight attention stages for within-region temporal aggregation and across-region contribution fusion, improve subject-independent stress recognition? The design does not aim to reconstruct the cleanest remote pulse waveform; it directly learns regional color dynamics for stress classification.
+Attention mechanisms are also often used to suppress background or unreliable frames and emphasize informative waveform segments. Spatial attention can reduce the influence of background and non-skin areas, temporal attention can emphasize reliable frames or useful waveform segments, and channel attention can model relationships among color channels or feature dimensions~\cite{chen2018deepphys,liu2020mttscan,xu2024mtasr}. PhysFormer~\cite{yu2022physformer}, RhythmFormer~\cite{zou2025rhythmformer}, and Masked Attention Regularization~\cite{zhao2024mar} further show that attention can enhance remote physiological spatiotemporal representations. Existing attention designs, however, mostly serve full-video representation learning or remote physiological reconstruction. This work demonstrates that compact regional color sequences, combined with two lightweight attention stages for within-region temporal aggregation and across-region contribution fusion, effectively improve subject-independent stress recognition. The design does not aim to reconstruct the cleanest remote pulse waveform; it directly learns regional color dynamics for stress classification.
 
 \section{Method}
 
@@ -72,7 +72,7 @@ Attention mechanisms are also often used to suppress background or unreliable fr
 
 Given a facial video clip $V=\{I_1,I_2,\ldots,I_T\}$, where $T$ is the number of frames, the goal is to predict a binary label $y \in \{0,1\}$, with $0$ denoting non-stress and $1$ denoting stress. Instead of feeding the full frame sequence into a large video network, we first convert the video into a multi-region color pulse representation:
 \begin{equation}
-    X \in \mathbb{R}^{K \times T \times C},
+    X \in \mathbb{R}^{K \times T \times C}
 \end{equation}
 where $K$ is the number of facial regions, $T$ is the clip length, and $C=3$ denotes the RGB channels. For a batch, the model input is $X \in \mathbb{R}^{B \times K \times T \times C}$. This representation compresses the spatial dimension into a small number of ROIs while preserving the temporal color dynamics of each region.
 
@@ -89,17 +89,17 @@ For each frame, the face is detected, cropped, and resized so that fixed ROIs re
 
 For the RGB vector of the $k$-th region at frame $t$, we use the average value over all pixels in that region:
 \begin{equation}
-    x_{k,t} = \frac{1}{|\Omega_k|} \sum_{p \in \Omega_k} I_t(p),
+    x_{k,t} = \frac{1}{|\Omega_k|} \sum_{p \in \Omega_k} I_t(p)
 \end{equation}
 where $\Omega_k$ denotes the pixel set of the $k$-th region. The color sequence of the $k$-th region is
 \begin{equation}
-    X_k = [x_{k,1}, x_{k,2}, \ldots, x_{k,T}].
+    X_k = [x_{k,1}, x_{k,2}, \ldots, x_{k,T}]
 \end{equation}
 Stacking all regional sequences yields $X \in \mathbb{R}^{K \times T \times C}$, where $C=3$ corresponds to the RGB channels.
 
 We normalize each region and each color channel along the temporal dimension:
 \begin{equation}
-    \hat{X}_{k,:,c} = \frac{X_{k,:,c} - \mu_{k,c}}{\sigma_{k,c}+\epsilon}.
+    \hat{X}_{k,:,c} = \frac{X_{k,:,c} - \mu_{k,c}}{\sigma_{k,c}+\epsilon}
 \end{equation}
 Here, $c$ is the color-channel index, $X_{k,:,c}$ denotes the full temporal sequence of the $c$-th channel in the $k$-th region, $\mu_{k,c}$ and $\sigma_{k,c}$ are the within-clip mean and standard deviation, and $\epsilon$ prevents division by zero. This step reduces the influence of skin tone, camera exposure, and global brightness shifts. Compared with raw frames, the representation removes most spatial redundancy while preserving regional color dynamics.
 
@@ -107,7 +107,7 @@ Here, $c$ is the color-channel index, $X_{k,:,c}$ denotes the full temporal sequ
 
 Each regional sequence is encoded by a shared one-dimensional temporal encoder. Given the normalized tensor $\hat{X}$, we first reshape it into $\tilde{X} \in \mathbb{R}^{B K \times C \times T}$ and feed it into stacked one-dimensional convolution blocks:
 \begin{equation}
-    H = E_{\theta}(\tilde{X}).
+    H = E_{\theta}(\tilde{X})
 \end{equation}
 After reshaping, $H \in \mathbb{R}^{B K \times T \times D}$, where $D$ is the hidden dimension. The shared encoder captures low-level color dynamics common to different regions while reducing parameter count and overfitting risk; short temporal kernels model local changes without repeatedly processing a full spatial image grid.
 
@@ -117,15 +117,15 @@ This strategy compresses space first and then models temporal dynamics, concentr
 
 For the temporal features of the $k$-th region, temporal attention predicts a score for each time position:
 \begin{equation}
-    e_{k,t} = \mathbf{w}_t^\top \tanh(\mathbf{W}_t h_{k,t}),
+    e_{k,t} = \mathbf{w}_t^\top \tanh(\mathbf{W}_t h_{k,t})
 \end{equation}
 where $\mathbf{W}_t$ is the feature projection matrix in temporal attention, $\mathbf{w}_t$ generates the scalar score, and $h_{k,t} \in \mathbb{R}^{D}$ is the feature of the $k$-th region at time position $t$. The normalized temporal weight is
 \begin{equation}
-    \alpha_{k,t} = \frac{\exp(e_{k,t})}{\sum_{\tau=1}^{T}\exp(e_{k,\tau})}.
+    \alpha_{k,t} = \frac{\exp(e_{k,t})}{\sum_{\tau=1}^{T}\exp(e_{k,\tau})}
 \end{equation}
 The region-level representation is obtained by weighted summation:
 \begin{equation}
-    r_k = \sum_{t=1}^{T}\alpha_{k,t} h_{k,t}.
+    r_k = \sum_{t=1}^{T}\alpha_{k,t} h_{k,t}
 \end{equation}
 Each region therefore has its own temporal weights, allowing the model to suppress unstable segments caused by speech, motion, or lighting before region fusion. This order matters: speech motion may affect the chin more strongly, reflections may affect the nose, and the forehead and cheeks may have different disturbance patterns.
 
@@ -133,23 +133,23 @@ Each region therefore has its own temporal weights, allowing the model to suppre
 
 After temporal aggregation, the model obtains $K$ region representations, denoted by $r_1,\ldots,r_K$. Region attention first computes a contribution score for each region:
 \begin{equation}
-    s_k = \mathbf{w}_r^\top \tanh(\mathbf{W}_r r_k),
+    s_k = \mathbf{w}_r^\top \tanh(\mathbf{W}_r r_k)
 \end{equation}
 where $\mathbf{W}_r$ is the feature projection matrix in region attention and $\mathbf{w}_r$ generates the regional scalar score. A softmax then gives the region weight:
 \begin{equation}
-    \beta_k = \frac{\exp(s_k)}{\sum_{j=1}^{K}\exp(s_j)}.
+    \beta_k = \frac{\exp(s_k)}{\sum_{j=1}^{K}\exp(s_j)}
 \end{equation}
 The attention-fused clip representation is
 \begin{equation}
-    z_{\mathrm{attn}} = \sum_{k=1}^{K}\beta_k r_k.
+    z_{\mathrm{attn}} = \sum_{k=1}^{K}\beta_k r_k
 \end{equation}
 The weight $\beta_k$ reflects the relative contribution of each ROI in the current clip, so the model can adapt region usage across subjects, lighting conditions, and task stages. To improve training stability, we add the mean regional representation as a residual term:
 \begin{equation}
-    z = z_{\mathrm{attn}} + \frac{1}{K}\sum_{k=1}^{K} r_k.
+    z = z_{\mathrm{attn}} + \frac{1}{K}\sum_{k=1}^{K} r_k
 \end{equation}
 Finally, $z$ is fed into a two-layer classifier $g(\cdot)$ to obtain logits:
 \begin{equation}
-    o = g(z).
+    o = g(z)
 \end{equation}
 
 Figure~\ref{fig:overview} summarizes the overall RT-MRCPNet pipeline.
@@ -165,7 +165,7 @@ Figure~\ref{fig:overview} summarizes the overall RT-MRCPNet pipeline.
 
 We train the model with cross-entropy loss. Let $p_c=\mathrm{softmax}(o)_c$ be the predicted probability of class $c$. The loss is
 \begin{equation}
-    \mathcal{L}_{cls} = -\sum_{c=1}^{2} y_c \log p_c,
+    \mathcal{L}_{cls} = -\sum_{c=1}^{2} y_c \log p_c
 \end{equation}
 where $y_c$ is the one-hot ground-truth label for class $c$. We use only classification supervision so that the comparison focuses on regional RGB dynamics and attention aggregation, without mixing in effects from auxiliary reconstruction or contrastive objectives.
 
@@ -175,9 +175,10 @@ where $y_c$ is the one-hot ground-truth label for class $c$. We use only classif
 
 The main experiments target social-stress facial video data. For UBFC-Phys-style data, each subject includes three tasks: rest, speech, and arithmetic. Following common social-stress protocol interpretation, the rest task is treated as non-stress, while the speech and arithmetic tasks are treated as stress:
 \begin{equation}
-    \mathrm{T1}=0,\quad \mathrm{T2/T3}=1.
+    \mathrm{T1}=0,\quad \mathrm{T2/T3}=1
 \end{equation}
-This binary setting is clear and reproducible, and it matches the central question of this paper: can a video model distinguish resting clips from social-stress task clips without contact sensors?
+This binary setting is clear and reproducible, and it matches the central focus of this paper on whether a video model can distinguish resting clips from social-stress task clips without contact sensors.
+
 
 \subsection{Subject-Independent Protocol}
 
@@ -193,7 +194,8 @@ We report Accuracy, F1-score, and AUC, and use a confusion matrix to show the er
 
 \subsection{Comparison Experiments}
 
-The comparison experiments follow a unified protocol. Whenever the input form permits, all compared methods use the same input source, the same subject-independent split, the same clip construction, and the same evaluation code. These controlled comparisons answer a specific question: when all inputs are restricted to facial RGB video, does multi-region temporal representation with attention fusion actually help? The baselines range from simple color-sequence models to video temporal models and rPPG-related models.
+The comparison experiments follow a unified protocol. Whenever the input form permits, all compared methods use the same input source, the same subject-independent split, the same clip construction, and the same evaluation code. These controlled comparisons evaluate whether multi-region temporal representation with attention fusion provides substantial improvements when all inputs are restricted to facial RGB video. The baselines range from simple color-sequence models to video temporal models and rPPG-related models.
+
 \begin{itemize}
     \item Full-face RGB temporal network: the five regional sequences are averaged into a whole-face RGB sequence and then temporally encoded.
     \item Single-region RGB temporal networks: forehead, left cheek, right cheek, nose, and chin sequences are used separately to observe differences among facial regions.
@@ -209,22 +211,28 @@ The comparison experiments follow a unified protocol. Whenever the input form pe
 \label{tab:main_results}
 \centering
 \small
-\begin{tabular}{p{3.6cm}p{4.1cm}ccc}
+\begin{tabular}{p{3.9cm}p{4.45cm}ccc}
 \toprule
 Method & Input & ACC & F1 & AUC \\
 \midrule
 Full-face RGB temporal network & Whole-face averaged RGB sequence & 82.24 & 87.56 & 87.20 \\
+\addlinespace[0.2em]
 Forehead single-region temporal network & Forehead RGB sequence & 75.21 & 82.06 & 79.36 \\
 Left-cheek single-region temporal network & Left-cheek RGB sequence & 73.88 & 80.76 & 77.15 \\
 Right-cheek single-region temporal network & Right-cheek RGB sequence & 64.20 & 76.09 & 59.82 \\
 Nose single-region temporal network & Nose RGB sequence & 78.35 & 83.74 & 85.96 \\
 Chin single-region temporal network & Chin RGB sequence & 80.72 & 86.05 & 85.40 \\
+\addlinespace[0.2em]
 Fixed multi-region fusion & Five ROI RGB sequences, fixed fusion & 80.72 & 85.67 & 89.12 \\
+\addlinespace[0.2em]
 rPPG features + support vector machine & Heart-rate/HRV hand-crafted features & 77.87 & 84.18 & 76.79 \\
 rPPG features + random forest & Heart-rate/HRV hand-crafted features & 77.02 & 84.43 & 75.60 \\
+\addlinespace[0.2em]
 Lightweight CNN-LSTM & ROI RGB temporal tensor & 67.33 & 76.82 & 62.73 \\
 Lightweight 3D CNN & ROI RGB temporal tensor & 70.75 & 80.60 & 70.70 \\
+\addlinespace[0.2em]
 PhysNet + stress classification head & Full-face RGB/rPPG-related features & 80.63 & 86.61 & 87.64 \\
+\addlinespace[0.2em]
 RT-MRCPNet & Five ROI RGB sequences, attention fusion & \textbf{86.42} & \textbf{90.27} & \textbf{93.07} \\
 \bottomrule
 \end{tabular}
@@ -314,8 +322,7 @@ RT-MRCPNet & 0.069M & 0.0817 ms \\
 This paper presents RT-MRCPNet, a lightweight region-temporal attention network for contactless stress recognition. The method converts facial video into multi-region RGB temporal sequences, uses a shared encoder to model local color dynamics, and aggregates information through temporal attention and region attention. Under a subject-independent protocol, RT-MRCPNet achieves 86.42\% ACC, 90.27\% F1-score, and 93.07\% AUC. The ablation study and complexity analysis show that the two attention stages provide complementary gains while maintaining low computational cost. Future work will explore adaptive ROI definitions, finer-grained stress labels, and multimodal fusion.
 
 \begingroup
-\let\small\tiny
-\bibliographystyle{splncs04_unsrt}
+\bibliographystyle{splncs04}
 \bibliography{references}
 \endgroup
 

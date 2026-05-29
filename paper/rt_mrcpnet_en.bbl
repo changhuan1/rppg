@@ -3,162 +3,88 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
 
-\bibitem{mcduff2014remote}
-McDuff, D., Gontarek, S., Picard, R.W.: Remote measurement of cognitive stress
-  via heart rate variability. In: Proceedings of the Annual International
-  Conference of the IEEE Engineering in Medicine and Biology Society. pp.
-  2957--2960 (2014). \doi{10.1109/EMBC.2014.6944243}
-
 \bibitem{benezeth2018remotehrv}
-Benezeth, Y., Li, P., Macwan, R., Nakamura, K., Gomez, R., Yang, F.: Remote
-  heart rate variability for emotional state monitoring. In: Proceedings of the
-  IEEE EMBS International Conference on Biomedical and Health Informatics. pp.
-  153--156 (2018)
-
-\bibitem{nikolaiev2020noncontact}
-Nikolaiev, S., Telenyk, S., Tymoshenko, Y.: Non-contact video-based remote
-  photoplethysmography for human stress detection. Journal of Automation,
-  Mobile Robotics and Intelligent Systems  \textbf{14}(2),  63--73 (2020).
-  \doi{10.14313/JAMRIS/2-2020/21}
-
-\bibitem{sabour2021ubfcphys}
-Meziati~Sabour, R., Benezeth, Y., De~Oliveira, P., Chappe, J., Yang, F.:
-  {UBFC-Phys}: A multimodal database for psychophysiological studies of social
-  stress. IEEE Transactions on Affective Computing  \textbf{14}(1),  622--636
-  (2023). \doi{10.1109/TAFFC.2021.3056960}
-
-\bibitem{chaptoukaev2023stressid}
-Chaptoukaev, H., Strizhkova, V., Panariello, M., D'Alpaos, B., Reka, A.,
-  Manera, V., Th{\"u}mmler, S., Ismailova, E., Evans, N.W.D., Br{\'e}mond, F.,
-  Todisco, M., Zuluaga, M.A., Ferrari, L.M.: {StressID}: A multimodal dataset
-  for stress identification. In: Advances in Neural Information Processing
-  Systems. vol.~36 (2023)
-
-\bibitem{heimerl2024fordigitstress}
-Heimerl, A., Prajod, P., Mertes, S., Baur, T., Kraus, M., Liu, A., Risack, H.,
-  Rohleder, N., Andr{\'e}, E., Becker, L.: The {ForDigitStress} dataset: A
-  multi-modal dataset for automatic stress recognition. IEEE Transactions on
-  Affective Computing pp. 1--17 (2024). \doi{10.1109/TAFFC.2024.3501400}
-
-\bibitem{chen2018deepphys}
-Chen, W., McDuff, D.: Deepphys: Video-based physiological measurement using
-  convolutional attention networks. In: Proceedings of the European Conference
-  on Computer Vision. pp. 356--373 (2018)
-
-\bibitem{yu2019physnet}
-Yu, Z., Li, X., Zhao, G.: Remote photoplethysmograph signal measurement from
-  facial videos using spatio-temporal networks. In: Proceedings of the British
-  Machine Vision Conference. pp. 1--12 (2019)
-
-\bibitem{liu2020mttscan}
-Liu, X., Fromm, J., Patel, S., McDuff, D.: Multi-task temporal shift attention
-  networks for on-device contactless vitals measurement. In: Advances in Neural
-  Information Processing Systems. vol.~33, pp. 19400--19411 (2020)
-
-\bibitem{liu2023efficientphys}
-Liu, X., Hill, B., Jiang, Z., Patel, S., McDuff, D.: Efficientphys: Enabling
-  simple, fast and accurate camera-based cardiac measurement. In: Proceedings
-  of the IEEE/CVF Winter Conference on Applications of Computer Vision. pp.
-  5008--5017 (2023)
-
-\bibitem{zhao2020multiscale}
-Zhao, Y., Li, B., Wang, R., Wang, Y., Yan, J., Liu, F.: Remote estimation of
-  heart rate based on multi-scale facial {ROIs}. Proceedings of the IEEE/CVF
-  Conference on Computer Vision and Pattern Recognition Workshops pp. 388--389
-  (2020)
-
-\bibitem{xiong2023graphphys}
-Xiong, J., Ou, W., Liu, Z., Gou, J., Xiao, W., Liu, H.: Graphphys: Facial
-  video-based physiological measurement with graph neural network. Computers
-  and Electrical Engineering  \textbf{113},  109022 (2024).
-  \doi{10.1016/j.compeleceng.2023.109022}
+Benezeth, Y., Li, P., Macwan, R., Nakamura, K., Gomez, R., Yang, F.: Remote heart rate variability for emotional state monitoring. In: Proceedings of the IEEE EMBS International Conference on Biomedical and Health Informatics. pp. 153--156 (2018)
 
 \bibitem{bondarenko2025regions}
-Bondarenko, M., Menon, C., Elgendi, M.: The role of face regions in remote
-  photoplethysmography for contactless heart rate monitoring. npj Digital
-  Medicine  \textbf{8}, ~479 (2025). \doi{10.1038/s41746-025-01814-9}
-
-\bibitem{xu2024mtasr}
-Xu, J., Song, C., Yue, Z., Ding, S.: Facial video-based non-contact stress
-  recognition utilizing multi-task learning with peak attention. IEEE Journal
-  of Biomedical and Health Informatics  \textbf{28}(9),  5335--5346 (2024).
-  \doi{10.1109/JBHI.2024.3412103}
-
-\bibitem{healey2005drivingstress}
-Healey, J.A., Picard, R.W.: Detecting stress during real-world driving tasks
-  using physiological sensors. IEEE Transactions on Intelligent Transportation
-  Systems  \textbf{6}(2),  156--166 (2005). \doi{10.1109/TITS.2005.848368}
-
-\bibitem{schmidt2018wesad}
-Schmidt, P., Reiss, A., Duerichen, R., Marberger, C., Van~Laerhoven, K.:
-  Introducing {WESAD}, a multimodal dataset for wearable stress and affect
-  detection. In: Proceedings of the 20th ACM International Conference on
-  Multimodal Interaction. pp. 400--408 (2018). \doi{10.1145/3242969.3242985}
-
-\bibitem{schmidt2019wearableaffectreview}
-Schmidt, P., Reiss, A., Duerichen, R., Van~Laerhoven, K.: Wearable-based affect
-  recognition: A review. Sensors  \textbf{19}(19), ~4079 (2019).
-  \doi{10.3390/s19194079}
+Bondarenko, M., Menon, C., Elgendi, M.: The role of face regions in remote photoplethysmography for contactless heart rate monitoring. npj Digital Medicine  \textbf{8}, ~479 (2025). \doi{10.1038/s41746-025-01814-9}
 
 \bibitem{bota2022empathicschool}
-Bota, P., Wang, C., Fred, A., Pl{\'a}cido~da Silva, H.: Empathicschool: A
-  multimodal dataset for real-time facial expressions and physiological data
-  analysis under different stress conditions. arXiv preprint arXiv:2209.13542
-  (2022)
-
-\bibitem{braun2024sympcam}
-Braun, B., McDuff, D., Baltrusaitis, T., Streli, P., Moebus, M., Holz, C.:
-  {SympCam}: Remote optical measurement of sympathetic arousal. In: Proceedings
-  of the IEEE-EMBS International Conference on Biomedical and Health
-  Informatics. p. 10913710 (2024). \doi{10.1109/BHI62660.2024.10913710}
+Bota, P., Wang, C., Fred, A., Pl{\'a}cido~da Silva, H.: Empathicschool: A multimodal dataset for real-time facial expressions and physiological data analysis under different stress conditions. arXiv preprint arXiv:2209.13542  (2022)
 
 \bibitem{braun2023sympathetic}
-Braun, B., McDuff, D., Baltrusaitis, T., Holz, C.: Video-based sympathetic
-  arousal assessment via peripheral blood flow estimation. Biomedical Optics
-  Express  \textbf{14}(12),  6607--6628 (2023). \doi{10.1364/BOE.507949}
+Braun, B., McDuff, D., Baltrusaitis, T., Holz, C.: Video-based sympathetic arousal assessment via peripheral blood flow estimation. Biomedical Optics Express  \textbf{14}(12),  6607--6628 (2023). \doi{10.1364/BOE.507949}
+
+\bibitem{braun2024sympcam}
+Braun, B., McDuff, D., Baltrusaitis, T., Streli, P., Moebus, M., Holz, C.: {SympCam}: Remote optical measurement of sympathetic arousal. In: Proceedings of the IEEE-EMBS International Conference on Biomedical and Health Informatics. p. 10913710 (2024). \doi{10.1109/BHI62660.2024.10913710}
+
+\bibitem{chaptoukaev2023stressid}
+Chaptoukaev, H., Strizhkova, V., Panariello, M., D'Alpaos, B., Reka, A., Manera, V., Th{\"u}mmler, S., Ismailova, E., Evans, N.W.D., Br{\'e}mond, F., Todisco, M., Zuluaga, M.A., Ferrari, L.M.: {StressID}: A multimodal dataset for stress identification. In: Advances in Neural Information Processing Systems. vol.~36 (2023)
+
+\bibitem{chen2018deepphys}
+Chen, W., McDuff, D.: Deepphys: Video-based physiological measurement using convolutional attention networks. In: Proceedings of the European Conference on Computer Vision. pp. 356--373 (2018)
 
 \bibitem{dehaan2013chrom}
-de~Haan, G., Jeanne, V.: Robust pulse rate from chrominance-based {rPPG}. IEEE
-  Transactions on Biomedical Engineering  \textbf{60}(10),  2878--2886 (2013).
-  \doi{10.1109/TBME.2013.2266196}
+de~Haan, G., Jeanne, V.: Robust pulse rate from chrominance-based {rPPG}. IEEE Transactions on Biomedical Engineering  \textbf{60}(10),  2878--2886 (2013). \doi{10.1109/TBME.2013.2266196}
 
-\bibitem{wang2017pos}
-Wang, W., den Brinker, A.C., Stuijk, S., de~Haan, G.: Algorithmic principles of
-  remote {PPG}. IEEE Transactions on Biomedical Engineering  \textbf{64}(7),
-  1479--1491 (2017). \doi{10.1109/TBME.2016.2609282}
+\bibitem{healey2005drivingstress}
+Healey, J.A., Picard, R.W.: Detecting stress during real-world driving tasks using physiological sensors. IEEE Transactions on Intelligent Transportation Systems  \textbf{6}(2),  156--166 (2005). \doi{10.1109/TITS.2005.848368}
+
+\bibitem{heimerl2024fordigitstress}
+Heimerl, A., Prajod, P., Mertes, S., Baur, T., Kraus, M., Liu, A., Risack, H., Rohleder, N., Andr{\'e}, E., Becker, L.: The {ForDigitStress} dataset: A multi-modal dataset for automatic stress recognition. IEEE Transactions on Affective Computing pp. 1--17 (2024). \doi{10.1109/TAFFC.2024.3501400}
+
+\bibitem{liu2020mttscan}
+Liu, X., Fromm, J., Patel, S., McDuff, D.: Multi-task temporal shift attention networks for on-device contactless vitals measurement. In: Advances in Neural Information Processing Systems. vol.~33, pp. 19400--19411 (2020)
+
+\bibitem{liu2023efficientphys}
+Liu, X., Hill, B., Jiang, Z., Patel, S., McDuff, D.: Efficientphys: Enabling simple, fast and accurate camera-based cardiac measurement. In: Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision. pp. 5008--5017 (2023)
+
+\bibitem{mcduff2014remote}
+McDuff, D., Gontarek, S., Picard, R.W.: Remote measurement of cognitive stress via heart rate variability. In: Proceedings of the Annual International Conference of the IEEE Engineering in Medicine and Biology Society. pp. 2957--2960 (2014). \doi{10.1109/EMBC.2014.6944243}
+
+\bibitem{sabour2021ubfcphys}
+Meziati~Sabour, R., Benezeth, Y., De~Oliveira, P., Chappe, J., Yang, F.: {UBFC-Phys}: A multimodal database for psychophysiological studies of social stress. IEEE Transactions on Affective Computing  \textbf{14}(1),  622--636 (2023). \doi{10.1109/TAFFC.2021.3056960}
+
+\bibitem{nikolaiev2020noncontact}
+Nikolaiev, S., Telenyk, S., Tymoshenko, Y.: Non-contact video-based remote photoplethysmography for human stress detection. Journal of Automation, Mobile Robotics and Intelligent Systems  \textbf{14}(2),  63--73 (2020). \doi{10.14313/JAMRIS/2-2020/21}
 
 \bibitem{pilz2018lgi}
-Pilz, C.S., Zaunseder, S., Krajewski, J., Blazek, V.: Local group invariance
-  for heart rate estimation from face videos in the wild. Proceedings of the
-  IEEE Conference on Computer Vision and Pattern Recognition Workshops pp.
-  1254--1262 (2018)
+Pilz, C.S., Zaunseder, S., Krajewski, J., Blazek, V.: Local group invariance for heart rate estimation from face videos in the wild. Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops pp. 1254--1262 (2018)
 
-\bibitem{yu2022physformer}
-Yu, Z., Shen, Y., Shi, J., Zhao, H., Torr, P.H.S., Zhao, G.: Physformer: Facial
-  video-based physiological measurement with temporal difference transformer.
-  In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
-  Recognition. pp. 4186--4196 (2022)
+\bibitem{schmidt2018wesad}
+Schmidt, P., Reiss, A., Duerichen, R., Marberger, C., Van~Laerhoven, K.: Introducing {WESAD}, a multimodal dataset for wearable stress and affect detection. In: Proceedings of the 20th ACM International Conference on Multimodal Interaction. pp. 400--408 (2018). \doi{10.1145/3242969.3242985}
 
-\bibitem{zou2025rhythmformer}
-Zou, B., Guo, Z., Chen, J., Ma, H.: Rhythmformer: Extracting patterned remote
-  photoplethysmography signals based on periodic sparse attention. Pattern
-  Recognition  \textbf{164},  111511 (2025). \doi{10.1016/j.patcog.2025.111511}
-
-\bibitem{zhao2024mar}
-Zhao, P., Sun, Q., Tian, X., Yang, Y., Tao, S., Cheng, J., Chen, J.: Toward
-  motion robustness: A masked attention regularization framework in remote
-  photoplethysmography. In: Proceedings of the IEEE/CVF Conference on Computer
-  Vision and Pattern Recognition Workshops. pp. 7829--7838 (2024)
-
-\bibitem{ziaratnia2024cctlstm}
-Ziaratnia, S.M., Demirel, H., Farah, K.: Multimodal deep learning for remote
-  stress estimation using {CCT-LSTM}. In: Proceedings of the IEEE/CVF Winter
-  Conference on Applications of Computer Vision Workshops. pp. 8337--8342
-  (2024)
+\bibitem{schmidt2019wearableaffectreview}
+Schmidt, P., Reiss, A., Duerichen, R., Van~Laerhoven, K.: Wearable-based affect recognition: A review. Sensors  \textbf{19}(19), ~4079 (2019). \doi{10.3390/s19194079}
 
 \bibitem{tran2015c3d}
-Tran, D., Bourdev, L., Fergus, R., Torresani, L., Paluri, M.: Learning
-  spatiotemporal features with 3d convolutional networks. In: Proceedings of
-  the IEEE International Conference on Computer Vision. pp. 4489--4497 (2015)
+Tran, D., Bourdev, L., Fergus, R., Torresani, L., Paluri, M.: Learning spatiotemporal features with 3d convolutional networks. In: Proceedings of the IEEE International Conference on Computer Vision. pp. 4489--4497 (2015)
+
+\bibitem{wang2017pos}
+Wang, W., den Brinker, A.C., Stuijk, S., de~Haan, G.: Algorithmic principles of remote {PPG}. IEEE Transactions on Biomedical Engineering  \textbf{64}(7),  1479--1491 (2017). \doi{10.1109/TBME.2016.2609282}
+
+\bibitem{xiong2023graphphys}
+Xiong, J., Ou, W., Liu, Z., Gou, J., Xiao, W., Liu, H.: Graphphys: Facial video-based physiological measurement with graph neural network. Computers and Electrical Engineering  \textbf{113},  109022 (2024). \doi{10.1016/j.compeleceng.2023.109022}
+
+\bibitem{xu2024mtasr}
+Xu, J., Song, C., Yue, Z., Ding, S.: Facial video-based non-contact stress recognition utilizing multi-task learning with peak attention. IEEE Journal of Biomedical and Health Informatics  \textbf{28}(9),  5335--5346 (2024). \doi{10.1109/JBHI.2024.3412103}
+
+\bibitem{yu2019physnet}
+Yu, Z., Li, X., Zhao, G.: Remote photoplethysmograph signal measurement from facial videos using spatio-temporal networks. In: Proceedings of the British Machine Vision Conference. pp. 1--12 (2019)
+
+\bibitem{yu2022physformer}
+Yu, Z., Shen, Y., Shi, J., Zhao, H., Torr, P.H.S., Zhao, G.: Physformer: Facial video-based physiological measurement with temporal difference transformer. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 4186--4196 (2022)
+
+\bibitem{zhao2024mar}
+Zhao, P., Sun, Q., Tian, X., Yang, Y., Tao, S., Cheng, J., Chen, J.: Toward motion robustness: A masked attention regularization framework in remote photoplethysmography. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops. pp. 7829--7838 (2024)
+
+\bibitem{zhao2020multiscale}
+Zhao, Y., Li, B., Wang, R., Wang, Y., Yan, J., Liu, F.: Remote estimation of heart rate based on multi-scale facial {ROIs}. Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops pp. 388--389 (2020)
+
+\bibitem{ziaratnia2024cctlstm}
+Ziaratnia, S.M., Demirel, H., Farah, K.: Multimodal deep learning for remote stress estimation using {CCT-LSTM}. In: Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision Workshops. pp. 8337--8342 (2024)
+
+\bibitem{zou2025rhythmformer}
+Zou, B., Guo, Z., Chen, J., Ma, H.: Rhythmformer: Extracting patterned remote photoplethysmography signals based on periodic sparse attention. Pattern Recognition  \textbf{164},  111511 (2025). \doi{10.1016/j.patcog.2025.111511}
 
 \end{thebibliography}

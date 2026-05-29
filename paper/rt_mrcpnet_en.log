@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.5.27)  29 MAY 2026 21:49
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.5.27)  29 MAY 2026 22:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -339,38 +339,33 @@ File: f1.eps Graphic file (type eps)
 File: f2.eps Graphic file (type eps)
 <f2.eps>
  [7] [8] [9]
-Underfull \hbox (badness 3590) in paragraph at lines 216--216
-[]|\TU/lmr/m/n/9 Whole-face averaged RGB
+Underfull \hbox (badness 10000) in paragraph at lines 216--216
+[]|\TU/lmr/m/n/9 Full-face RGB temporal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 217--217
-[]|\TU/lmr/m/n/9 Forehead single-region
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 218--218
+Underfull \hbox (badness 10000) in paragraph at lines 219--219
 []|\TU/lmr/m/n/9 Left-cheek single-region
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 221--221
-[]|\TU/lmr/m/n/9 Chin single-region tem-
+Underfull \hbox (badness 10000) in paragraph at lines 220--220
+[]|\TU/lmr/m/n/9 Right-cheek single-region
  []
 
 
-Underfull \hbox (badness 1394) in paragraph at lines 222--222
-[]|\TU/lmr/m/n/9 Five ROI RGB sequences,
+Underfull \hbox (badness 6300) in paragraph at lines 226--226
+[]|\TU/lmr/m/n/9 Heart-rate/HRV hand-crafted
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 223--223
-[]|\TU/lmr/m/n/9 Heart-rate/HRV hand-
+Underfull \hbox (badness 6300) in paragraph at lines 227--227
+[]|\TU/lmr/m/n/9 Heart-rate/HRV hand-crafted
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--224
-[]|\TU/lmr/m/n/9 Heart-rate/HRV hand-
+Underfull \hbox (badness 10000) in paragraph at lines 232--232
+[]|\TU/lmr/m/n/9 Full-face RGB/rPPG-related
  []
 
 [10]
@@ -379,60 +374,101 @@ File: f3.eps Graphic file (type eps)
 File: f4.eps Graphic file (type eps)
 <f4.eps>
  [11] [12] [13] (./rt_mrcpnet_en.bbl
-Underfull \hbox (badness 1231) in paragraph at lines 71--75
-[]\TU/lmr/m/n/5 Xiong, J., Ou, W., Liu, Z., Gou, J., Xiao, W., Liu, H.: Graphph
-ys: Facial video-based physiologi-
+Underfull \hbox (badness 2922) in paragraph at lines 28--29
+\TU/lmr/m/n/9 IEEE Transactions on Biomedical Engineering \TU/lmr/bx/n/9 60\TU/
+lmr/m/n/9 (10), 2878–2886 (2013).
+ []
+
+[14]
+Underfull \hbox (badness 1072) in paragraph at lines 46--47
+[]\TU/lmr/m/n/9 Meziati Sabour, R., Benezeth, Y., De Oliveira, P., Chappe, J., 
+Yang, F.:
  []
 
 
-Underfull \hbox (badness 7685) in paragraph at lines 88--91
-[]\TU/lmr/m/n/5 Healey, J.A., Picard, R.W.: Detecting stress during real-world 
-driving tasks using physiolog-
+Underfull \hbox (badness 1308) in paragraph at lines 46--47
+\TU/lmr/m/n/9 UBFC-Phys: A multimodal database for psychophysiological studies 
+of so-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--91
-\TU/lmr/m/n/5 ical sensors. IEEE Transactions on Intelligent Transportation Sys
-tems \TU/lmr/bx/n/5 6\TU/lmr/m/n/5 (2), 156–166 (2005).
+Underfull \hbox (badness 2961) in paragraph at lines 49--50
+[]\TU/lmr/m/n/9 Nikolaiev, S., Telenyk, S., Tymoshenko, Y.: Non-contact video-b
+ased re-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--119
-[]\TU/lmr/m/n/5 Braun, B., McDuff, D., Baltrusaitis, T., Holz, C.: Video-based 
-sympathetic arousal assess-
+Underfull \hbox (badness 3460) in paragraph at lines 49--50
+\TU/lmr/m/n/9 mote photoplethysmography for human stress detection. Journal of 
+Au-
  []
 
 
-Underfull \hbox (badness 3386) in paragraph at lines 116--119
-\TU/lmr/m/n/5 ment via peripheral blood flow estimation. Biomedical Optics Expr
-ess \TU/lmr/bx/n/5 14\TU/lmr/m/n/5 (12), 6607–6628 (2023).
+Underfull \hbox (badness 3068) in paragraph at lines 49--50
+\TU/lmr/m/n/9 tomation, Mobile Robotics and Intelligent Systems \TU/lmr/bx/n/9 
+14\TU/lmr/m/n/9 (2), 63–73 (2020).
  []
 
 
-Underfull \hbox (badness 3872) in paragraph at lines 143--146
-[]\TU/lmr/m/n/5 Zou, B., Guo, Z., Chen, J., Ma, H.: Rhythmformer: Extracting pa
-tterned remote photoplethys-
+Underfull \hbox (badness 5359) in paragraph at lines 58--59
+[]\TU/lmr/m/n/9 Schmidt, P., Reiss, A., Duerichen, R., Van Laerhoven, K.: Weara
+ble-
  []
 
 
-Underfull \hbox (badness 5460) in paragraph at lines 143--146
-\TU/lmr/m/n/5 mography signals based on periodic sparse attention. Pattern Reco
-gnition \TU/lmr/bx/n/5 164\TU/lmr/m/n/5 , 111511 (2025).
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
+\TU/lmr/m/n/9 based affect recognition: A review. Sensors \TU/lmr/bx/n/9 19\TU/
+lmr/m/n/9 (19),  4079 (2019).
  []
 
-) [14] (./rt_mrcpnet_en.aux)
+
+Underfull \hbox (badness 7433) in paragraph at lines 67--68
+[]\TU/lmr/m/n/9 Xiong, J., Ou, W., Liu, Z., Gou, J., Xiao, W., Liu, H.: Graph-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
+\TU/lmr/m/n/9 phys: Facial video-based physiological measurement with graph neu
+-
+ []
+
+
+Underfull \hbox (badness 3439) in paragraph at lines 67--68
+\TU/lmr/m/n/9 ral network. Computers and Electrical Engineering \TU/lmr/bx/n/9 
+113\TU/lmr/m/n/9 , 109022 (2024).
+ []
+
+
+Underfull \hbox (badness 6316) in paragraph at lines 70--71
+[]\TU/lmr/m/n/9 Xu, J., Song, C., Yue, Z., Ding, S.: Facial video-based non-con
+tact
+ []
+
+
+Underfull \hbox (badness 1997) in paragraph at lines 70--71
+\TU/lmr/m/n/9 stress recognition utilizing multi-task learning with peak attent
+ion. IEEE
+ []
+
+
+Underfull \hbox (badness 3492) in paragraph at lines 70--71
+\TU/lmr/m/n/9 Journal of Biomedical and Health Informatics \TU/lmr/bx/n/9 28\TU
+/lmr/m/n/9 (9), 5335–5346 (2024).
+ []
+
+[15]) [16] (./rt_mrcpnet_en.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3012 strings out of 468168
- 43326 string characters out of 5436524
- 469152 words of memory out of 5000000
- 31701 multiletter control sequences out of 15000+600000
- 634149 words of font info for 75 fonts, out of 8000000 for 9000
+ 3006 strings out of 468168
+ 43163 string characters out of 5436524
+ 458152 words of memory out of 5000000
+ 31699 multiletter control sequences out of 15000+600000
+ 634133 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 57i,10n,65p,1670b,285s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,10n,65p,1670b,359s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on rt_mrcpnet_en.pdf (14 pages).
+Output written on rt_mrcpnet_en.pdf (16 pages).

@@ -72,7 +72,7 @@
 
 给定人脸视频片段 $V=\{I_1,I_2,\ldots,I_T\}$，其中 $T$ 表示片段帧数，目标是预测二分类标签 $y \in \{0,1\}$，其中 $0$ 表示非压力，$1$ 表示压力。本文不将完整帧序列直接输入大型视频网络，而是先将视频转化为多区域颜色脉动表示：
 \begin{equation}
-    X \in \mathbb{R}^{K \times T \times C},
+    X \in \mathbb{R}^{K \times T \times C}
 \end{equation}
 其中 $K$ 表示面部区域数量，$T$ 表示片段长度，$C=3$ 表示 RGB 三个颜色通道。对于一个 batch，模型输入为 $X \in \mathbb{R}^{B \times K \times T \times C}$。该表示将空间维度压缩到少量 ROI，同时保留每个区域随时间变化的颜色动态。
 
@@ -89,17 +89,17 @@
 
 对于第 $k$ 个区域在第 $t$ 帧上的 RGB 向量，本文使用区域内所有像素的平均值：
 \begin{equation}
-    x_{k,t} = \frac{1}{|\Omega_k|} \sum_{p \in \Omega_k} I_t(p),
+    x_{k,t} = \frac{1}{|\Omega_k|} \sum_{p \in \Omega_k} I_t(p)
 \end{equation}
 其中 $\Omega_k$ 表示第 $k$ 个区域的像素集合。第 $k$ 个区域的颜色序列可以表示为
 \begin{equation}
-    X_k = [x_{k,1}, x_{k,2}, \ldots, x_{k,T}].
+    X_k = [x_{k,1}, x_{k,2}, \ldots, x_{k,T}]
 \end{equation}
 将所有区域序列堆叠后得到 $X \in \mathbb{R}^{K \times T \times C}$，其中 $C=3$，对应 RGB 三个颜色通道。
 
 本文对每个区域、每个颜色通道分别进行时间维度标准化：
 \begin{equation}
-    \hat{X}_{k,:,c} = \frac{X_{k,:,c} - \mu_{k,c}}{\sigma_{k,c}+\epsilon}.
+    \hat{X}_{k,:,c} = \frac{X_{k,:,c} - \mu_{k,c}}{\sigma_{k,c}+\epsilon}
 \end{equation}
 其中，$c$ 为颜色通道索引，$X_{k,:,c}$ 表示第 $k$ 个区域在第 $c$ 个颜色通道上的完整时间序列，$\mu_{k,c}$ 和 $\sigma_{k,c}$ 为片段内均值和标准差，$\epsilon$ 防止除零。该步骤降低个体肤色、相机曝光和整体亮度偏移的影响。与直接使用原始帧相比，该表示去除大部分空间冗余，同时保留区域颜色动态。
 
@@ -107,7 +107,7 @@
 
 每个区域序列由共享的一维时序编码器进行编码。给定标准化张量 $\hat{X}$，先将其调整为 $\tilde{X} \in \mathbb{R}^{B K \times C \times T}$，再输入多层一维卷积块：
 \begin{equation}
-    H = E_{\theta}(\tilde{X}),
+    H = E_{\theta}(\tilde{X})
 \end{equation}
 经过维度调整后，$H \in \mathbb{R}^{B K \times T \times D}$，其中 $D$ 为隐藏维度。共享编码器可以捕获不同区域共有的低层颜色动态，同时降低参数量和过拟合风险；短时间卷积核则用于建模局部变化，而无需反复处理完整空间图像网格。
 
@@ -117,15 +117,15 @@
 
 对于第 $k$ 个区域的时序特征，时间注意力为每个时间位置预测一个分数：
 \begin{equation}
-    e_{k,t} = \mathbf{w}_t^\top \tanh(\mathbf{W}_t h_{k,t}),
+    e_{k,t} = \mathbf{w}_t^\top \tanh(\mathbf{W}_t h_{k,t})
 \end{equation}
 其中 $\mathbf{W}_t$ 为时间注意力中的特征投影矩阵，$\mathbf{w}_t$ 为用于生成标量分数的权重向量，$h_{k,t} \in \mathbb{R}^{D}$ 为第 $k$ 个区域在第 $t$ 个时间位置的特征。归一化后的时间权重为
 \begin{equation}
-    \alpha_{k,t} = \frac{\exp(e_{k,t})}{\sum_{\tau=1}^{T}\exp(e_{k,\tau})}.
+    \alpha_{k,t} = \frac{\exp(e_{k,t})}{\sum_{\tau=1}^{T}\exp(e_{k,\tau})}
 \end{equation}
 区域级表示通过加权求和得到：
 \begin{equation}
-    r_k = \sum_{t=1}^{T}\alpha_{k,t} h_{k,t}.
+    r_k = \sum_{t=1}^{T}\alpha_{k,t} h_{k,t}
 \end{equation}
 这样，每个区域拥有独立时间权重，可以在区域融合前抑制说话、运动或光照造成的不稳定片段。该顺序很重要：说话动作可能更明显地影响下巴，反光可能更多影响鼻部，而额头和脸颊受到的干扰模式并不完全相同。
 
@@ -133,23 +133,23 @@
 
 完成时间聚合后，模型得到区域级表示 $\{r_1,\ldots,r_K\}$。区域注意力首先为每个区域计算贡献分数：
 \begin{equation}
-    s_k = \mathbf{w}_r^\top \tanh(\mathbf{W}_r r_k),
+    s_k = \mathbf{w}_r^\top \tanh(\mathbf{W}_r r_k)
 \end{equation}
 其中 $\mathbf{W}_r$ 为区域注意力中的特征投影矩阵，$\mathbf{w}_r$ 为用于生成区域标量分数的权重向量。然后通过 softmax 得到区域权重：
 \begin{equation}
-    \beta_k = \frac{\exp(s_k)}{\sum_{j=1}^{K}\exp(s_j)}.
+    \beta_k = \frac{\exp(s_k)}{\sum_{j=1}^{K}\exp(s_j)}
 \end{equation}
 注意力融合后的片段级表示为
 \begin{equation}
-    z_{\mathrm{attn}} = \sum_{k=1}^{K}\beta_k r_k.
+    z_{\mathrm{attn}} = \sum_{k=1}^{K}\beta_k r_k
 \end{equation}
 区域权重 $\beta_k$ 反映当前片段中各 ROI 的相对贡献，因此模型可以在不同被试、光照或任务阶段下自适应调整区域使用方式。为了提升训练稳定性，本文加入平均区域表示作为残差项：
 \begin{equation}
-    z = z_{\mathrm{attn}} + \frac{1}{K}\sum_{k=1}^{K} r_k.
+    z = z_{\mathrm{attn}} + \frac{1}{K}\sum_{k=1}^{K} r_k
 \end{equation}
 最终，$z$ 输入两层多层感知机分类器，得到 logits：
 \begin{equation}
-    o = \mathrm{MLP}(z).
+    o = \mathrm{MLP}(z)
 \end{equation}
 
 图~\ref{fig:overview_zh} 总结了 RT-MRCPNet 的整体流程。
@@ -165,7 +165,7 @@
 
 本文使用交叉熵损失训练模型。令 $p_c=\mathrm{softmax}(o)_c$ 表示类别 $c$ 的预测概率，则损失函数为
 \begin{equation}
-    \mathcal{L}_{cls} = -\sum_{c=1}^{2} y_c \log p_c,
+    \mathcal{L}_{cls} = -\sum_{c=1}^{2} y_c \log p_c
 \end{equation}
 其中 $y_c$ 表示真实标签的 one-hot 编码在类别 $c$ 上的取值。本文只使用分类监督，使比较聚焦于区域 RGB 动态和注意力聚合，避免将辅助重建或对比学习目标带来的影响混入主比较。
 
@@ -175,7 +175,7 @@
 
 本文主要实验面向社会压力人脸视频数据。对于 UBFC-Phys 类型数据，每名被试包含静息、演讲和算术三个任务。按照常见社会压力协议解释，静息任务被视为非压力状态，演讲和算术任务被视为压力状态：
 \begin{equation}
-    \mathrm{T1}=0,\quad \mathrm{T2/T3}=1.
+    \mathrm{T1}=0,\quad \mathrm{T2/T3}=1
 \end{equation}
 该二分类设定清晰、可复现，并与本文关注的问题一致：在不使用接触式传感器的情况下，视频模型能否区分静息片段和社会压力任务片段。
 
@@ -310,8 +310,7 @@ RT-MRCPNet & 0.069M & 0.0817 ms \\
 本文提出 RT-MRCPNet，一种用于非接触式压力识别的轻量级区域-时间注意力网络。该方法将人脸视频转化为多区域 RGB 时序序列，使用共享编码器建模局部颜色动态，并通过时间注意力和区域注意力聚合信息。在 subject-independent 协议下，RT-MRCPNet 达到 86.42\% ACC、90.27\% F1-score 和 93.07\% AUC。消融实验和复杂度分析表明，两个注意力阶段能够带来互补增益并保持较低计算开销。未来工作将探索自适应 ROI 定义、更细粒度压力标签和多模态融合。
 
 \begingroup
-\let\small\tiny
-\bibliographystyle{splncs04_unsrt}
+\bibliographystyle{splncs04}
 \bibliography{references}
 \endgroup
 
