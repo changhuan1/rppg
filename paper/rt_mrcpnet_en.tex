@@ -78,7 +78,7 @@ where $K$ is the number of facial regions, $T$ is the clip length, and $C=3$ den
 
 \subsection{Multi-Region Color Pulse Representation}
 
-For each frame, the face is detected, cropped, and resized so that fixed ROIs remain geometrically consistent across frames. Figure~\ref{fig:region_partition} shows the five regions used in this paper: forehead, left cheek, right cheek, nose, and chin. They cover skin areas commonly used in rPPG while having different reliability profiles: cheeks often contain clearer color dynamics, the forehead is relatively stable but may be affected by hair, the nose is prone to highlights, and the chin is easily disturbed by speech motion. We use fixed rectangular regions rather than dense landmarks to reduce preprocessing complexity and keep region definitions consistent across video clips.
+For each frame, the face is detected, cropped, and resized so that fixed ROIs remain geometrically consistent across frames. Fig.~\ref{fig:region_partition} shows the five regions used in this paper: forehead, left cheek, right cheek, nose, and chin. They cover skin areas commonly used in rPPG while having different reliability profiles: cheeks often contain clearer color dynamics, the forehead is relatively stable but may be affected by hair, the nose is prone to highlights, and the chin is easily disturbed by speech motion. We use fixed rectangular regions rather than dense landmarks to reduce preprocessing complexity and keep region definitions consistent across video clips.
 
 \begin{figure}
 \centering
@@ -152,7 +152,7 @@ Finally, $z$ is fed into a two-layer classifier $g(\cdot)$ to obtain logits:
     o = g(z)
 \end{equation}
 
-Figure~\ref{fig:overview} summarizes the overall RT-MRCPNet pipeline.
+Fig.~\ref{fig:overview} summarizes the overall RT-MRCPNet pipeline.
 
 \begin{figure}
 \centering
@@ -242,7 +242,7 @@ RT-MRCPNet & Five ROI RGB sequences, attention fusion & \textbf{86.42} & \textbf
 
 Table~\ref{tab:main_results} shows that RT-MRCPNet obtains the highest ACC, F1-score, and AUC among all controlled baselines. Compared with the full-face RGB temporal network, RT-MRCPNet improves ACC, F1-score, and AUC by 4.18, 2.71, and 5.87 percentage points, respectively. Compared with fixed multi-region fusion, the improvements are 5.70, 4.60, and 3.95 percentage points. The gain therefore comes not only from using multiple ROIs, but also from adaptively selecting reliable time positions and discriminative facial regions. The single-region results also show clear regional differences: in this split, chin and nose sequences outperform cheek-only sequences, but no single-region model reaches the performance of adaptive multi-region representation.
 
-Figure~\ref{fig:region_signal_diversity} shows the color-pulse signal differences among the five facial ROIs. The regions differ in fluctuation amplitude, stability, and degree of disturbance. This is consistent with the single-region performance differences in Table~\ref{tab:main_results} and indicates that simple whole-face averaging or fixed region fusion can lose useful local evidence.
+Fig.~\ref{fig:region_signal_diversity} shows the color-pulse signal differences among the five facial ROIs. The regions differ in fluctuation amplitude, stability, and degree of disturbance. This is consistent with the single-region performance differences in Table~\ref{tab:main_results} and indicates that simple whole-face averaging or fixed region fusion can lose useful local evidence.
 
 \begin{figure}[!htbp]
 \centering
@@ -255,7 +255,7 @@ Figure~\ref{fig:region_signal_diversity} shows the color-pulse signal difference
 \label{fig:region_signal_diversity}
 \end{figure}
 
-Figure~\ref{fig:attention_reliability} further illustrates the relationship between attention weights and input reliability. Temporal attention distinguishes relatively stable and disturbed time positions within a clip, while region attention reflects the relative contribution of different facial areas to the final decision, explaining the advantage of RT-MRCPNet over fixed fusion.
+Fig.~\ref{fig:attention_reliability} further illustrates the relationship between attention weights and input reliability. Temporal attention distinguishes relatively stable and disturbed time positions within a clip, while region attention reflects the relative contribution of different facial areas to the final decision, explaining the advantage of RT-MRCPNet over fixed fusion.
 
 \begin{figure}[!htbp]
 \centering

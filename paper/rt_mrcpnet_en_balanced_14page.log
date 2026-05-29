@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.5.27)  29 MAY 2026 22:54
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.5.27)  29 MAY 2026 23:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**rt_mrcpnet_en
-(./rt_mrcpnet_en.tex
+**rt_mrcpnet_en_balanced_14page
+(./rt_mrcpnet_en_balanced_14page.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (./llncs.cls
@@ -278,36 +278,36 @@ File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
 \g__graphics_track_int=\count326
 \g__pdfannot_backend_int=\count327
 \g__pdfannot_backend_link_int=\count328
-) (./rt_mrcpnet_en.aux)
-\openout1 = `rt_mrcpnet_en.aux'.
+) (./rt_mrcpnet_en_balanced_14page.aux)
+\openout1 = `rt_mrcpnet_en_balanced_14page.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
  (d:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
  (d:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ]
-Underfull \vbox (badness 5105) has occurred while \output is active []
+Underfull \vbox (badness 5817) has occurred while \output is active []
 
  [2] [3] [4]
 File: f1.eps Graphic file (type eps)
@@ -315,47 +315,46 @@ File: f1.eps Graphic file (type eps)
  [5] [6]
 File: f2.eps Graphic file (type eps)
 <f2.eps>
- [7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 218--218
+ [7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 223--223
 []|\TU/lmr/m/n/9 Full-face RGB temporal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--221
+Underfull \hbox (badness 10000) in paragraph at lines 226--226
 []|\TU/lmr/m/n/9 Left-cheek single-region
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 227--227
 []|\TU/lmr/m/n/9 Right-cheek single-region
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 228--228
+Underfull \hbox (badness 6300) in paragraph at lines 233--233
 []|\TU/lmr/m/n/9 Heart-rate/HRV hand-crafted
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 229--229
+Underfull \hbox (badness 6300) in paragraph at lines 234--234
 []|\TU/lmr/m/n/9 Heart-rate/HRV hand-crafted
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--234
+Underfull \hbox (badness 10000) in paragraph at lines 239--239
 []|\TU/lmr/m/n/9 Full-face RGB/rPPG-related
  []
 
-[10]
 File: f3.eps Graphic file (type eps)
 <f3.eps>
 File: f4.eps Graphic file (type eps)
 <f4.eps>
- [11] [12] [13] (./rt_mrcpnet_en.bbl
+[9] [10] [11] (./rt_mrcpnet_en_balanced_14page.bbl [12]
 Underfull \hbox (badness 2922) in paragraph at lines 28--29
 \TU/lmr/m/n/9 IEEE Transactions on Biomedical Engineering \TU/lmr/bx/n/9 60\TU/lmr/m/n/9 (10), 2878–2886 (2013).
  []
 
-[14]
+
 Underfull \hbox (badness 1072) in paragraph at lines 46--47
 []\TU/lmr/m/n/9 Meziati Sabour, R., Benezeth, Y., De Oliveira, P., Chappe, J., Yang, F.:
  []
@@ -380,7 +379,7 @@ Underfull \hbox (badness 3068) in paragraph at lines 49--50
 \TU/lmr/m/n/9 tomation, Mobile Robotics and Intelligent Systems \TU/lmr/bx/n/9 14\TU/lmr/m/n/9 (2), 63–73 (2020).
  []
 
-
+[13]
 Underfull \hbox (badness 5359) in paragraph at lines 58--59
 []\TU/lmr/m/n/9 Schmidt, P., Reiss, A., Duerichen, R., Van Laerhoven, K.: Wearable-
  []
@@ -420,7 +419,7 @@ Underfull \hbox (badness 3492) in paragraph at lines 70--71
 \TU/lmr/m/n/9 Journal of Biomedical and Health Informatics \TU/lmr/bx/n/9 28\TU/lmr/m/n/9 (9), 5335–5346 (2024).
  []
 
-[15]) [16] (./rt_mrcpnet_en.aux)
+) [14] (./rt_mrcpnet_en_balanced_14page.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -428,11 +427,11 @@ L3 programming layer <2026-01-19>
  ) 
 Here is how much of TeX's memory you used:
  3006 strings out of 468168
- 43163 string characters out of 5436524
- 458152 words of memory out of 5000000
+ 43435 string characters out of 5436524
+ 461184 words of memory out of 5000000
  31699 multiletter control sequences out of 15000+600000
  634133 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 57i,10n,65p,1666b,359s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,10n,65p,1507b,357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on rt_mrcpnet_en.pdf (16 pages).
+Output written on rt_mrcpnet_en_balanced_14page.pdf (14 pages).
